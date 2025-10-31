@@ -1,0 +1,14 @@
+<div class="container">
+  <h2>Equipas</h2>
+  <div>
+    <input placeholder="Nome da equipa" [(ngModel)]="name" />
+    <button (click)="add()">Adicionar</button>
+  </div>
+
+  <ul>
+    <li *ngFor="let t of teams">
+      {{ t.name }}
+      <button (click)="remove(t.id)">Remover</button>
+    </li>
+  </ul>
+</div>

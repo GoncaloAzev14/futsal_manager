@@ -1,0 +1,14 @@
+// src/app/app.routes.ts
+import { Routes } from '@angular/router';
+import { TeamsComponent } from './teams/teams.component';
+import { RoundsComponent } from './rounds/rounds.component';
+import { MatchesComponent } from './matches/matches.component';
+import { StandingsComponent } from './standings/standings.component';
+
+export const appRoutes: Routes = [
+  { path: '', redirectTo: 'standings', pathMatch: 'full' },
+  { path: 'teams', component: TeamsComponent },
+  { path: 'rounds', component: RoundsComponent },
+  { path: 'matches', component: MatchesComponent },
+  { path: 'standings', component: StandingsComponent }
+];

@@ -1,0 +1,44 @@
+<div class="container">
+  <h2>Jogos</h2>
+
+  <div>
+    <label>Jornada</label>
+    <select [(ngModel)]="selectedRoundId" (change)="loadMatches()">
+      <option [ngValue]="undefined">-- Selecionar --</option>
+      <option *ngFor="let r of rounds" [value]="r.id">{{ r.name }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label>Casa</label>
+    <select [(ngModel)]="homeTeamId">
+      <option *ngFor="let t of teams" [value]="t.id">{{ t.name }}</option>
+    </select>
+
+    <label>Fora</label>
+    <select [(ngModel)]="awayTeamId">
+      <option *ngFor="let t of teams" [value]="t.id">{{ t.name }}</option>
+    </select>
+
+    <label>Data</label>
+    <input type="datetime-local" [(ngModel)]="date" />
+
+    <label>Local</label>
+    <input [(ngModel)]="location" />
+
+    <button (click)="createMatch()">Criar jogo</button>
+  </div>
+
+  <h3>Jogos</h3>
+  <ul>
+    <li *ngFor="let m of matches">
+      {{ m.date ? (m.date | date:'short') : 'Sem data' }} —
+      {{ getTeamName(m.homeTeamId) || 'Casa' }}
+      <input type="number" [(ngModel)]="m.homeGoals" (change)="updateResult(m)" />
+      :
+      <input type="number" [(ngModel)]="m.awayGoals" (change)="updateResult(m)" />
+      {{ getTeamName(m.awayTeamId) || 'Fora' }}
+      <button (click)="removeMatch(m.id)">Remover</button>
+    </li>
+  </ul>
+</div>

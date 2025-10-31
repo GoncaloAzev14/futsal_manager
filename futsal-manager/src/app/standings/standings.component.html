@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Classificação</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th><th>Equipa</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GM</th><th>GS</th><th>DG</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of rows; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ r.teamName }}</td>
+        <td>{{ r.points }}</td>
+        <td>{{ r.played }}</td>
+        <td>{{ r.wins }}</td>
+        <td>{{ r.draws }}</td>
+        <td>{{ r.losses }}</td>
+        <td>{{ r.goalsFor }}</td>
+        <td>{{ r.goalsAgainst }}</td>
+        <td>{{ r.goalDifference }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

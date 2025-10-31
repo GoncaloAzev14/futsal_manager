@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>Jornadas</h2>
+  <div>
+    <input placeholder="Nome da jornada (ex: Jornada 1)" [(ngModel)]="name" />
+    <button (click)="add()">Adicionar</button>
+  </div>
+
+  <ul>
+    <li *ngFor="let r of rounds">
+      {{ r.name }} <button (click)="remove(r.id)">Remover</button>
+    </li>
+  </ul>
+</div>
