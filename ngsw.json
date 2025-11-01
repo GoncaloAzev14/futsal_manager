@@ -1,0 +1,79 @@
+{
+  "configVersion": 1,
+  "timestamp": 1762009698389,
+  "index": "/futsal-manager/index.csr.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/futsal-manager/favicon.ico",
+        "/futsal-manager/index.csr.html",
+        "/futsal-manager/main-JVZEU66P.js",
+        "/futsal-manager/manifest.webmanifest",
+        "/futsal-manager/polyfills-B6TNHZQ6.js",
+        "/futsal-manager/styles-6GHOH2YB.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/futsal-manager/icons/icon-128x128.png",
+        "/futsal-manager/icons/icon-144x144.png",
+        "/futsal-manager/icons/icon-152x152.png",
+        "/futsal-manager/icons/icon-192x192.png",
+        "/futsal-manager/icons/icon-384x384.png",
+        "/futsal-manager/icons/icon-512x512.png",
+        "/futsal-manager/icons/icon-72x72.png",
+        "/futsal-manager/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/futsal-manager/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/futsal-manager/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
+    "/futsal-manager/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
+    "/futsal-manager/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
+    "/futsal-manager/icons/icon-192x192.png": "15c4180454633880d98674aa7394656196c91584",
+    "/futsal-manager/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
+    "/futsal-manager/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
+    "/futsal-manager/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
+    "/futsal-manager/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
+    "/futsal-manager/index.csr.html": "5578c51aceabf0243a693aa8925d99eca8e22de8",
+    "/futsal-manager/main-JVZEU66P.js": "2dde134671201d5889713021953460e44e66863c",
+    "/futsal-manager/manifest.webmanifest": "b1864e11117bda1ea13c0f55cba241582689aaa1",
+    "/futsal-manager/polyfills-B6TNHZQ6.js": "bf76ac291d7f51c1139b7edcf86b359a30c08c64",
+    "/futsal-manager/styles-6GHOH2YB.css": "6d19e49fc51784fe5db54979a8d08c41ea0adf3a"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
