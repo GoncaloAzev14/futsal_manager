@@ -4,11 +4,13 @@ import { TeamsComponent } from './teams/teams.component';
 import { RoundsComponent } from './rounds/rounds.component';
 import { MatchesComponent } from './matches/matches.component';
 import { StandingsComponent } from './standings/standings.component';
+import { LeagueComponent } from './league/league.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: 'standings', pathMatch: 'full' },
   { path: 'teams', component: TeamsComponent },
   { path: 'rounds', component: RoundsComponent },
   { path: 'matches', component: MatchesComponent },
-  { path: 'standings', component: StandingsComponent }
+  { path: 'standings', component: StandingsComponent },
+  { path: 'league', component: LeagueComponent }
 ];
