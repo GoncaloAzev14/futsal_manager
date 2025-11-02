@@ -7,10 +7,13 @@ import { StandingsComponent } from './standings/standings.component';
 import { LeagueComponent } from './league/league.component';
 
 export const appRoutes: Routes = [
-  { path: '', redirectTo: 'standings', pathMatch: 'full' },
-  { path: 'teams', component: TeamsComponent },
-  { path: 'rounds', component: RoundsComponent },
-  { path: 'matches', component: MatchesComponent },
-  { path: 'standings', component: StandingsComponent },
-  { path: 'league', component: LeagueComponent }
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: 'league', component: LeagueComponent,
+    children: [
+      { path: 'teams', component: TeamsComponent },
+      { path: 'rounds', component: RoundsComponent },
+      { path: 'matches', component: MatchesComponent },
+      { path: 'standings', component: StandingsComponent },
+    ]
+  },
 ];
