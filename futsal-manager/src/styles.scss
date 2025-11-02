@@ -1649,3 +1649,662 @@ input[type="file"]::-webkit-file-upload-button:hover {
     font-size: 0.95rem;
   }
 }
+
+/* Flashscore Style for Matches */
+.flashscore-day-section {
+  margin-bottom: 25px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.flashscore-day-header {
+  background: #2e2e2e;
+  color: white;
+  padding: 12px 20px;
+}
+
+.flashscore-day-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+  border: none;
+  text-transform: capitalize;
+}
+
+.flashscore-matches-container {
+  background: #c5c5c5;
+}
+
+.flashscore-match-row {
+  display: grid;
+  grid-template-columns: auto 60px 1fr auto 1fr auto;
+  grid-template-areas: "round time home score away actions";
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  background: #ededed;
+  border-bottom: 1px solid #b0b0b0;
+  transition: background 0.2s ease;
+}
+
+.flashscore-match-row:last-child {
+  border-bottom: none;
+}
+
+.flashscore-match-row:hover {
+  background: #d0d0d0;
+}
+
+.flashscore-round {
+  grid-area: round;
+}
+
+.flashscore-round-badge {
+  background: #4a4a4a;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.flashscore-time {
+  grid-area: time;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #2e2e2e;
+}
+
+.flashscore-team {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.flashscore-home {
+  grid-area: home;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.flashscore-away {
+  grid-area: away;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.flashscore-logo {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  background: white;
+  border-radius: 50%;
+  padding: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.flashscore-team-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #2e2e2e;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.flashscore-score {
+  grid-area: score;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.flashscore-score-input {
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  background: white;
+  color: #2e2e2e;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.flashscore-score-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1);
+}
+
+.flashscore-score-separator {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #666;
+}
+
+.flashscore-actions {
+  grid-area: actions;
+  display: flex;
+  justify-content: center;
+}
+
+.flashscore-delete-btn {
+  background: transparent;
+  border: none;
+  color: #666;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.flashscore-delete-btn:hover {
+  background: rgba(229, 57, 53, 0.15);
+  color: var(--danger);
+}
+
+/* Responsive Flashscore Style */
+@media (max-width: 1024px) {
+  .flashscore-match-row {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "round time time"
+      "home home home"
+      "score score score"
+      "away away away"
+      "actions actions actions";
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .flashscore-home,
+  .flashscore-away {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .flashscore-score {
+    justify-self: center;
+  }
+
+  .flashscore-actions {
+    justify-self: end;
+  }
+}
+
+@media (max-width: 768px) {
+  .flashscore-match-row {
+    padding: 12px;
+  }
+
+  .flashscore-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .flashscore-team-name {
+    font-size: 0.95rem;
+    max-width: 150px;
+  }
+
+  .flashscore-score-input {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .flashscore-round-badge {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+
+  .flashscore-time {
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================================ */
+/* MOBILE-FIRST APP STYLING */
+/* ============================================ */
+
+/* Remove default mobile styles */
+@media (max-width: 768px) {
+  body {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: pan-y;
+  }
+
+  /* Full viewport height */
+  html, body {
+    height: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Container adjustments */
+  .container {
+    padding: 10px;
+    max-width: 100%;
+  }
+
+  /* Sticky Navigation - Native App Feel */
+  .nav-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-container {
+    padding: 0;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .nav-brand {
+    display: none; /* Hide logo on mobile to save space */
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-links li {
+    flex: 1;
+  }
+
+  .nav-links a {
+    padding: 12px 8px;
+    font-size: 0.75rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    border-bottom: 3px solid transparent;
+  }
+
+  .nav-links a::before {
+    content: attr(data-icon);
+    font-size: 1.2rem;
+  }
+
+  /* Add top padding to content for fixed nav */
+  .container.fade-in {
+    padding-top: 70px;
+  }
+
+  /* Card optimizations */
+  .card {
+    border-radius: 12px;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .card-header {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  /* Form improvements */
+  .form-group {
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .form-field {
+    min-width: 100%;
+  }
+
+  label {
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="datetime-local"],
+  select {
+    padding: 14px 16px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    border-radius: 8px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  /* Button optimizations */
+  button, .btn {
+    padding: 14px 20px;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    min-height: 48px; /* Touch-friendly */
+  }
+
+  .btn-primary {
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 166, 81, 0.3);
+  }
+
+  /* Flashscore Mobile Optimization */
+  .flashscore-day-section {
+    margin-bottom: 15px;
+    border-radius: 10px;
+  }
+
+  .flashscore-day-header {
+    padding: 10px 15px;
+  }
+
+  .flashscore-day-header h3 {
+    font-size: 1rem;
+  }
+
+  .flashscore-match-row {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "round"
+      "time"
+      "home"
+      "score"
+      "away"
+      "actions";
+    gap: 12px;
+    padding: 15px;
+    border-radius: 0;
+  }
+
+  .flashscore-round {
+    justify-self: start;
+  }
+
+  .flashscore-round-badge {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+
+  .flashscore-time {
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-align: left;
+  }
+
+  .flashscore-team {
+    gap: 10px;
+  }
+
+  .flashscore-home,
+  .flashscore-away {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .flashscore-logo {
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+  }
+
+  .flashscore-team-name {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .flashscore-score {
+    width: 100%;
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .flashscore-score-input {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    touch-action: manipulation;
+  }
+
+  .flashscore-score-separator {
+    font-size: 1.6rem;
+  }
+
+  .flashscore-actions {
+    justify-self: center;
+    width: 100%;
+  }
+
+  .flashscore-delete-btn {
+    width: 100%;
+    padding: 12px;
+    background: rgba(229, 57, 53, 0.1);
+    color: var(--danger);
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+
+  /* Rounds View Mobile */
+  .round-section {
+    margin-bottom: 15px;
+    border-radius: 10px;
+  }
+
+  .round-header {
+    padding: 12px 15px;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .round-title {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .round-title h3 {
+    font-size: 1.1rem;
+  }
+
+  .round-header .btn-danger {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .match-card-compact {
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+    border-radius: 8px;
+  }
+
+  .match-date {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+  }
+
+  .match-date .date,
+  .match-date .time {
+    display: inline;
+    font-size: 0.95rem;
+  }
+
+  .match-info {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .match-status {
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Teams Grid Mobile */
+  .teams-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .team-card {
+    padding: 12px;
+  }
+
+  .team-logo-container {
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+  }
+
+  .team-name {
+    font-size: 0.9rem;
+  }
+
+  /* Add Team Form Mobile */
+  .add-team-form {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .logo-upload-area {
+    width: 140px;
+    height: 140px;
+  }
+
+  .team-info-section {
+    padding-top: 0;
+  }
+
+  .modern-input {
+    padding: 14px 16px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  /* Standings Table Mobile */
+  table {
+    font-size: 0.75rem;
+    border-radius: 10px;
+  }
+
+  th, td {
+    padding: 8px 4px;
+  }
+
+  th {
+    font-size: 0.7rem;
+  }
+
+  th:first-child,
+  td:first-child {
+    width: 30px;
+  }
+
+  /* Empty States */
+  .empty-state {
+    padding: 40px 20px;
+  }
+
+  .empty-state-icon {
+    font-size: 3rem;
+  }
+
+  .empty-state-text {
+    font-size: 1rem;
+  }
+
+  /* Pull to refresh indicator space */
+  body {
+    overscroll-behavior-y: contain;
+  }
+
+  /* Smooth scrolling */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Form field improvements */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  /* Active states for touch */
+  button:active,
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  .flashscore-match-row:active {
+    background: #d5d5d5;
+  }
+
+  /* Bottom safe area for iPhone notch */
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .container {
+      padding-bottom: calc(20px + env(safe-area-inset-bottom));
+    }
+
+    .nav-header {
+      padding-top: env(safe-area-inset-top);
+    }
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+  .flashscore-team-name {
+    font-size: 0.85rem;
+  }
+
+  .flashscore-logo {
+    width: 35px;
+    height: 35px;
+  }
+
+  .flashscore-score-input {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+
+  .teams-grid {
+    grid-template-columns: 1fr;
+  }
+}
