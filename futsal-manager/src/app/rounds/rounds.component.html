@@ -1,13 +1,80 @@
-<div class="container">
-  <h2>Jornadas</h2>
-  <div>
-    <input placeholder="Nome da jornada (ex: Jornada 1)" [(ngModel)]="name" />
-    <button (click)="add()">Adicionar</button>
+<div class="container fade-in">
+  <h2>📅 Jornadas</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Adicionar Nova Jornada</div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-field">
+        <label for="round-name">Nome da Jornada</label>
+        <input
+          id="round-name"
+          type="text"
+          placeholder="Ex: Jornada 1"
+          [(ngModel)]="name"
+          (keyup.enter)="add()"
+        />
+      </div>
+      <button class="btn-primary" (click)="add()">Adicionar Jornada</button>
+    </div>
   </div>
 
-  <ul>
-    <li *ngFor="let r of rounds">
-      {{ r.name }} <button (click)="remove(r.id)">Remover</button>
-    </li>
-  </ul>
+  <!-- Lista de Jornadas com Jogos -->
+  <div *ngIf="rounds.length === 0" class="empty-state">
+    <div class="empty-state-icon">📅</div>
+    <div class="empty-state-text">Nenhuma jornada criada</div>
+    <p>Crie jornadas para organizar os jogos</p>
+  </div>
+
+  <!-- Cada Jornada -->
+  <div *ngFor="let round of roundsWithMatches" class="round-section">
+    <div class="round-header">
+      <div class="round-title">
+        <h3>{{ round.name }}</h3>
+        <span class="round-stats">{{ round.matches.length }} jogo(s)</span>
+      </div>
+      <button class="btn-danger" (click)="remove(round.id)">Remover Jornada</button>
+    </div>
+
+    <!-- Jogos desta Jornada -->
+    <div class="round-matches">
+      <div *ngIf="round.matches.length === 0" class="empty-matches">
+        <p>📋 Nenhum jogo nesta jornada</p>
+        <small>Vá a "Jogos" para adicionar jogos a esta jornada</small>
+      </div>
+
+      <div *ngFor="let match of round.matches" class="match-card-compact">
+        <div class="match-date">
+          <div class="date">{{ match.date ? (match.date | date:'dd/MM') : '--/--' }}</div>
+          <div class="time">{{ match.date ? (match.date | date:'HH:mm') : '--:--' }}</div>
+        </div>
+
+        <div class="match-info">
+          <div class="match-teams-vertical">
+            <div class="team-row">
+              <span class="team-name">{{ getTeamName(match.homeTeamId) }}</span>
+              <span class="team-score" [class.winner]="(match.homeGoals ?? 0) > (match.awayGoals ?? 0) && match.homeGoals != null">
+                {{ match.homeGoals != null ? match.homeGoals : '-' }}
+              </span>
+            </div>
+            <div class="team-row">
+              <span class="team-name">{{ getTeamName(match.awayTeamId) }}</span>
+              <span class="team-score" [class.winner]="(match.awayGoals ?? 0) > (match.homeGoals ?? 0) && match.awayGoals != null">
+                {{ match.awayGoals != null ? match.awayGoals : '-' }}
+              </span>
+            </div>
+          </div>
+
+          <div class="match-status" *ngIf="match.homeGoals != null && match.awayGoals != null">
+            <span class="badge badge-success">✓ Finalizado</span>
+          </div>
+          <div class="match-status" *ngIf="match.homeGoals == null || match.awayGoals == null">
+            <span class="badge badge-warning">⏱ Por jogar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

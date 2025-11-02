@@ -514,3 +514,166 @@ tbody tr:last-child td {
   font-size: 1.2rem;
   margin-bottom: 10px;
 }
+
+/* Secção de cada Jornada */
+.round-section {
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.round-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: white;
+}
+
+.round-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.round-title h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: white;
+  border: none;
+}
+
+.round-stats {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.round-header .btn-danger {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+  color: white;
+}
+
+.round-header .btn-danger:hover {
+  background: white;
+  color: var(--danger);
+}
+
+/* Jogos dentro da Jornada */
+.round-matches {
+  padding: 15px;
+  background: var(--bg-primary);
+}
+
+.empty-matches {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-light);
+}
+
+.empty-matches p {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.empty-matches small {
+  font-size: 0.9rem;
+}
+
+/* Cards de Jogos Compactos */
+.match-card-compact {
+  background: white;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-left: 4px solid var(--border-color);
+}
+
+.match-card-compact:hover {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  transform: translateX(5px);
+  border-left-color: var(--primary-color);
+}
+
+.match-date {
+  min-width: 60px;
+  text-align: center;
+  padding: 8px;
+  background: var(--bg-primary);
+  border-radius: 6px;
+}
+
+.match-date .date {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.match-date .time {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.match-info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.match-teams-vertical {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.team-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.team-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.team-score {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--text-secondary);
+  min-width: 35px;
+  text-align: center;
+  padding: 4px 8px;
+  background: var(--bg-primary);
+  border-radius: 4px;
+}
+
+.team-score.winner {
+  color: var(--primary-color);
+  background: rgba(0, 166, 81, 0.1);
+}
+
+.match-status {
+  min-width: 110px;
+  text-align: right;
+}

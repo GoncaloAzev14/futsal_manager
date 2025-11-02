@@ -1,9 +1,17 @@
-// src/app/rounds/rounds.component.ts
 import { Component, OnInit } from '@angular/core';
 import { RoundService } from '../round.service';
-import { Round } from '../model';
+import { MatchService } from '../match.service';
+import { TeamService } from '../team.service';
+import { Round, Match, Team } from '../model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
+interface RoundWithMatches {
+  id: string;
+  name: string;
+  order: number;
+  matches: Match[];
+}
 
 @Component({
   selector: 'app-rounds',
@@ -13,12 +21,48 @@ import { FormsModule } from '@angular/forms';
 })
 export class RoundsComponent implements OnInit {
   rounds: Round[] = [];
+  roundsWithMatches: RoundWithMatches[] = [];
+  teams: Team[] = [];
   name = '';
 
-  constructor(private roundService: RoundService) {}
+  constructor(
+    private roundService: RoundService,
+    private matchService: MatchService,
+    private teamService: TeamService
+  ) {}
 
-  async ngOnInit() { await this.load(); }
-  async load() { this.rounds = await this.roundService.getAll(); }
+  async ngOnInit() {
+    await this.loadTeams();
+    await this.load();
+  }
+
+  async loadTeams() {
+    this.teams = await this.teamService.getAll();
+  }
+
+  async load() {
+    this.rounds = await this.roundService.getAll();
+
+    this.roundsWithMatches = await Promise.all(
+      this.rounds.map(async (round) => {
+        const matches = await this.matchService.getByRound(round.id);
+        matches.sort((a, b) => {
+          if (!a.date) return 1;
+          if (!b.date) return -1;
+          return new Date(a.date).getTime() - new Date(b.date).getTime();
+        });
+
+        return {
+          id: round.id,
+          name: round.name,
+          order: round.order,
+          matches
+        };
+      })
+    );
+
+    this.roundsWithMatches.sort((a, b) => b.order - a.order);
+  }
 
   async add() {
     if (!this.name.trim()) return;
@@ -28,8 +72,23 @@ export class RoundsComponent implements OnInit {
   }
 
   async remove(id: string) {
-    if (!confirm('Remover jornada?')) return;
+    const round = this.roundsWithMatches.find(r => r.id === id);
+
+    if (round && round.matches.length > 0) {
+      if (!confirm(`Esta jornada tem ${round.matches.length} jogo(s). Tem certeza que quer remover?`)) {
+        return;
+      }
+    } else if (!confirm('Remover jornada?')) {
+      return;
+    }
+
     await this.roundService.remove(id);
     await this.load();
+  }
+
+  getTeamName(id?: string): string {
+    if (!id) return 'Equipa';
+    const team = this.teams.find(t => t.id === id);
+    return team ? team.name : 'Equipa';
   }
 }
