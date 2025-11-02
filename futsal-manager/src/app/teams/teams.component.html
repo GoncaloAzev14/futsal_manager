@@ -1,29 +1,75 @@
 <div class="container fade-in">
-  <h2>⚽ Equipas</h2>
 
-  <div class="card">
+  <div class="card add-team-card">
     <div class="card-header">
       <div class="card-title">Adicionar Nova Equipa</div>
     </div>
 
-    <div class="form-group">
-      <div class="form-field">
-        <label for="team-name">Nome da Equipa</label>
-        <input
-          id="team-name"
-          type="text"
-          placeholder="Ex: FC Porto"
-          [(ngModel)]="name"
-          (keyup.enter)="add()"
-        />
+    <div class="add-team-form">
+      <div class="logo-upload-section">
+        <div class="logo-upload-area" [class.has-preview]="logoPreview">
+          <input
+            id="team-logo"
+            type="file"
+            accept="image/*"
+            (change)="onFileSelected($event)"
+            hidden
+          />
+
+          <label for="team-logo" class="logo-upload-label">
+            <div *ngIf="!logoPreview" class="upload-placeholder">
+              <div class="upload-icon">📸</div>
+              <div class="upload-hint">PNG, JPG (máx. 2MB)</div>
+            </div>
+
+            <div *ngIf="logoPreview" class="logo-preview-container">
+              <img [src]="logoPreview" alt="Preview" class="logo-preview-img" />
+              <div class="logo-overlay">
+                <span>Alterar</span>
+              </div>
+            </div>
+          </label>
+
+          <button
+            *ngIf="logoPreview"
+            type="button"
+            class="remove-logo-btn"
+            (click)="clearLogo()"
+            title="Remover logo"
+          >
+            ✕
+          </button>
+        </div>
       </div>
-      <button class="btn-primary" (click)="add()">Adicionar Equipa</button>
+
+      <div class="team-info-section">
+        <div class="form-field-modern">
+          <label for="team-name" class="modern-label">
+            <span>Nome da Equipa</span>
+          </label>
+          <input
+            id="team-name"
+            type="text"
+            class="modern-input"
+            placeholder="Ex: Covense, Pedome, etc..."
+            [(ngModel)]="name"
+            (keyup.enter)="add()"
+            autocomplete="off"
+          />
+        </div>
+
+        <button class="btn-primary btn-large" (click)="add()">
+          <span class="btn-icon">➕</span>
+          <span>Adicionar Equipa</span>
+        </button>
+      </div>
     </div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <div class="card-title">Lista de Equipas ({{ teams.length }})</div>
+      <div class="card-title">Equipas Participantes</div>
+      <div class="teams-count-badge">{{ teams.length }} equipa(s)</div>
     </div>
 
     <div *ngIf="teams.length === 0" class="empty-state">
@@ -32,13 +78,25 @@
       <p>Comece por adicionar equipas à competição</p>
     </div>
 
-    <ul *ngIf="teams.length > 0">
-      <li *ngFor="let t of teams; let i = index" class="list-item">
-        <div class="list-item-content">
-          <strong>#{{ i + 1 }}</strong> - {{ t.name }}
+    <div *ngIf="teams.length > 0" class="teams-grid">
+      <div *ngFor="let t of teams; let i = index" class="team-card">
+        <div class="team-card-header">
+          <span class="team-number">#{{ i + 1 }}</span>
+          <button class="btn-danger btn-icon" (click)="remove(t.id)" title="Remover equipa">
+            🗑️
+          </button>
         </div>
-        <button class="btn-danger" (click)="remove(t.id)">Remover</button>
-      </li>
-    </ul>
+
+        <div class="team-logo-container">
+          <img
+            [src]="t.logo || getDefaultLogo()"
+            [alt]="t.name"
+            class="team-logo"
+          />
+        </div>
+
+        <div class="team-name">{{ t.name }}</div>
+      </div>
+    </div>
   </div>
 </div>

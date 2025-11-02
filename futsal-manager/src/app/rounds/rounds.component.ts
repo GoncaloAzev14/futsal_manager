@@ -65,9 +65,14 @@ export class RoundsComponent implements OnInit {
   }
 
   async add() {
-    if (!this.name.trim()) return;
-    await this.roundService.createRound(this.name.trim());
-    this.name = '';
+    // Get the highest order number and add 1
+    const maxOrder = this.rounds.length > 0
+      ? Math.max(...this.rounds.map(r => r.order))
+      : 0;
+    const nextNumber = maxOrder + 1;
+    const name = `Jornada ${nextNumber}`;
+
+    await this.roundService.createRound(name, nextNumber);
     await this.load();
   }
 

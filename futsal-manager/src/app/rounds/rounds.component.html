@@ -1,22 +1,7 @@
 <div class="container fade-in">
-  <h2>📅 Jornadas</h2>
 
   <div class="card">
-    <div class="card-header">
-      <div class="card-title">Adicionar Nova Jornada</div>
-    </div>
-
     <div class="form-group">
-      <div class="form-field">
-        <label for="round-name">Nome da Jornada</label>
-        <input
-          id="round-name"
-          type="text"
-          placeholder="Ex: Jornada 1"
-          [(ngModel)]="name"
-          (keyup.enter)="add()"
-        />
-      </div>
       <button class="btn-primary" (click)="add()">Adicionar Jornada</button>
     </div>
   </div>
@@ -26,7 +11,7 @@
     <div class="empty-state-icon">📅</div>
     <div class="empty-state-text">Nenhuma jornada criada</div>
     <p>Crie jornadas para organizar os jogos</p>
-  </div>
+  </div>-
 
   <!-- Cada Jornada -->
   <div *ngFor="let round of roundsWithMatches" class="round-section">

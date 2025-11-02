@@ -8,8 +8,14 @@ import { v4 as uuidv4 } from 'uuid';
 export class TeamService {
   constructor(private db: AppDB) {}
 
-  async createTeam(name: string, shortName?: string) {
-    const team: Team = { id: uuidv4(), name, shortName, createdAt: Date.now() };
+  async createTeam(name: string, shortName?: string, logo?: string) {
+    const team: Team = {
+      id: uuidv4(),
+      name,
+      shortName,
+      logo,
+      createdAt: Date.now()
+    };
     await this.db.teams.add(team);
     return team;
   }

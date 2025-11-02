@@ -3,6 +3,7 @@ export interface Team {
   id: string;
   name: string;
   shortName?: string;
+  logo?: string;
   createdAt: number;
 }
 
@@ -24,7 +25,7 @@ export interface GoalEvent {
 export interface Match {
   id: string;
   roundId: string;
-  date?: string | null;     // ISO 8601 ou null
+  date?: string | null;
   location?: string;
   homeTeamId: string;
   awayTeamId: string;
