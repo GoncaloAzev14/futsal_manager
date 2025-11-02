@@ -1355,3 +1355,297 @@ input[type="file"]::-webkit-file-upload-button:hover {
     height: 130px;
   }
 }
+
+/* Compact Day Section */
+.day-section-compact {
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.day-header-compact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #424242;
+  color: white;
+}
+
+.day-header-compact h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: white;
+  border: none;
+  text-transform: capitalize;
+}
+
+.match-count {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.matches-list-compact {
+  padding: 0;
+}
+
+/* Compact Match Row */
+.match-row-compact {
+  display: grid;
+  grid-template-columns: 80px 1fr auto auto auto 50px;
+  grid-template-areas:
+    "datetime teams round score status actions"
+    "location location location location location location";
+  gap: 15px;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+  background: white;
+  transition: background 0.2s ease;
+}
+
+.match-row-compact:hover {
+  background: var(--hover-bg);
+}
+
+.match-row-compact:last-child {
+  border-bottom: none;
+}
+
+/* Date/Time */
+.match-datetime {
+  grid-area: datetime;
+  text-align: center;
+  padding: 8px;
+  background: var(--bg-primary);
+  border-radius: 8px;
+  min-width: 70px;
+}
+
+.match-day {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.match-time {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* Teams Column */
+.match-teams-column {
+  grid-area: teams;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 200px;
+}
+
+.team-with-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.team-logo-small {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: white;
+  padding: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.team-name-compact {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+/* Round Badge */
+.match-round-compact {
+  grid-area: round;
+}
+
+.round-badge {
+  display: inline-block;
+  background: var(--primary-color);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Score Inputs */
+.match-score-compact {
+  grid-area: score;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.score-input-compact {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 8px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.score-input-compact:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1);
+}
+
+.score-input-compact.winner-score {
+  color: var(--primary-color);
+  background: rgba(0, 166, 81, 0.05);
+  border-color: var(--primary-color);
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
+.score-separator {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-light);
+}
+
+/* Status Badge */
+.match-status-compact {
+  grid-area: status;
+  min-width: 120px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-finished {
+  background: rgba(0, 166, 81, 0.1);
+  color: var(--success);
+}
+
+.status-pending {
+  background: rgba(251, 140, 0, 0.1);
+  color: var(--warning);
+}
+
+/* Actions */
+.match-actions-compact {
+  grid-area: actions;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-delete-compact {
+  background: transparent;
+  border: none;
+  color: var(--text-light);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-delete-compact:hover {
+  background: rgba(229, 57, 53, 0.1);
+  color: var(--danger);
+}
+
+/* Location */
+.match-location-compact {
+  grid-area: location;
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .match-row-compact {
+    grid-template-columns: 70px 1fr auto;
+    grid-template-areas:
+      "datetime teams teams"
+      "round score status"
+      "actions actions actions"
+      "location location location";
+    gap: 12px;
+  }
+
+  .match-round-compact,
+  .match-score-compact,
+  .match-status-compact {
+    justify-self: center;
+  }
+
+  .match-actions-compact {
+    justify-self: end;
+  }
+}
+
+@media (max-width: 768px) {
+  .match-row-compact {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "datetime"
+      "teams"
+      "round"
+      "score"
+      "status"
+      "actions"
+      "location";
+    padding: 15px;
+  }
+
+  .match-datetime {
+    justify-self: start;
+  }
+
+  .match-teams-column {
+    min-width: 100%;
+  }
+
+  .match-round-compact,
+  .match-score-compact,
+  .match-status-compact,
+  .match-actions-compact {
+    justify-self: start;
+  }
+
+  .team-logo-small {
+    width: 30px;
+    height: 30px;
+  }
+
+  .team-name-compact {
+    font-size: 0.95rem;
+  }
+}
