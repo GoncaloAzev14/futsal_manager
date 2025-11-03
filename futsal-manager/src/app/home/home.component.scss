@@ -1,0 +1,129 @@
+.competitions-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.competitions-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.competitions-header h1 {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.competitions-header p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.competitions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.competition-card {
+  background: white;
+  border-radius: 16px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  border: 3px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.competition-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.competition-card:hover::before {
+  transform: scaleX(1);
+}
+
+.competition-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary-color);
+}
+
+.competition-icon {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  filter: grayscale(0.3);
+  transition: all 0.3s ease;
+}
+
+.competition-card:hover .competition-icon {
+  filter: grayscale(0);
+  transform: scale(1.1);
+}
+
+.competition-card h2 {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.competition-card p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.competition-badge {
+  display: inline-block;
+  background: var(--primary-color);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .competitions-container {
+    padding: 20px 15px;
+  }
+
+  .competitions-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .competitions-header p {
+    font-size: 1rem;
+  }
+
+  .competitions-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .competition-card {
+    padding: 30px 20px;
+  }
+
+  .competition-icon {
+    font-size: 4rem;
+  }
+
+  .competition-card h2 {
+    font-size: 1.5rem;
+  }
+}

@@ -1,47 +1,51 @@
 <div class="container fade-in">
-  <!-- Form to Add Match -->
-  <div class="card">
+  <!-- Compact Form to Add Match -->
+  <div class="card compact-form-card">
     <div class="card-header">
-      <div class="card-title">Adicionar Novo Jogo</div>
+      <div class="card-title">➕ Adicionar Jogo</div>
     </div>
 
-    <div class="form-group">
-      <div class="form-field">
-        <label for="round">Jornada</label>
-        <select id="round" [(ngModel)]="selectedRoundId">
-          <option [ngValue]="undefined">-- Selecionar Jornada --</option>
-          <option *ngFor="let r of rounds" [value]="r.id">{{ r.name }}</option>
-        </select>
+    <div class="compact-form">
+      <div class="compact-row">
+        <div class="compact-field">
+          <label for="round">Jornada</label>
+          <select id="round" [(ngModel)]="selectedRoundId">
+            <option [ngValue]="undefined">Selecionar</option>
+            <option *ngFor="let r of rounds" [value]="r.id">{{ r.name }}</option>
+          </select>
+        </div>
+
+        <div class="compact-field">
+          <label for="home-team">Casa</label>
+          <select id="home-team" [(ngModel)]="homeTeamId">
+            <option [ngValue]="undefined">Selecionar</option>
+            <option *ngFor="let t of teams" [value]="t.id">{{ t.name }}</option>
+          </select>
+        </div>
+
+        <div class="compact-field">
+          <label for="away-team">Fora</label>
+          <select id="away-team" [(ngModel)]="awayTeamId">
+            <option [ngValue]="undefined">Selecionar</option>
+            <option *ngFor="let t of teams" [value]="t.id">{{ t.name }}</option>
+          </select>
+        </div>
       </div>
 
-      <div class="form-field">
-        <label for="home-team">Casa</label>
-        <select id="home-team" [(ngModel)]="homeTeamId">
-          <option [ngValue]="undefined">-- Selecionar --</option>
-          <option *ngFor="let t of teams" [value]="t.id">{{ t.name }}</option>
-        </select>
-      </div>
+      <div class="compact-row">
+        <div class="compact-field">
+          <label for="date">Data e Hora</label>
+          <input id="date" type="datetime-local" [(ngModel)]="date" />
+        </div>
 
-      <div class="form-field">
-        <label for="away-team">Fora</label>
-        <select id="away-team" [(ngModel)]="awayTeamId">
-          <option [ngValue]="undefined">-- Selecionar --</option>
-          <option *ngFor="let t of teams" [value]="t.id">{{ t.name }}</option>
-        </select>
-      </div>
+        <div class="compact-field">
+          <label for="location">Local</label>
+          <input id="location" type="text" placeholder="Ex: Pavilhão" [(ngModel)]="location" />
+        </div>
 
-      <div class="form-field">
-        <label for="date">Data e Hora</label>
-        <input id="date" type="datetime-local" [(ngModel)]="date" />
-      </div>
-
-      <div class="form-field">
-        <label for="location">Local</label>
-        <input id="location" type="text" placeholder="Ex: Pavilhão Municipal" [(ngModel)]="location" />
+        <button class="btn-primary compact-btn" (click)="createMatch()">Criar</button>
       </div>
     </div>
-
-    <button class="btn-primary" (click)="createMatch()">Criar Jogo</button>
   </div>
 
   <!-- Matches Grouped by Day -->

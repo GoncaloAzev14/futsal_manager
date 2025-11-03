@@ -8,12 +8,26 @@ import { LeagueComponent } from './league/league.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
-  { path: 'league', component: LeagueComponent,
+  {
+    path: 'league',
+    component: LeagueComponent,
     children: [
+      { path: '', redirectTo: 'standings', pathMatch: 'full' },
       { path: 'teams', component: TeamsComponent },
       { path: 'rounds', component: RoundsComponent },
       { path: 'matches', component: MatchesComponent },
       { path: 'standings', component: StandingsComponent },
     ]
   },
+  {
+    path: 'cup',
+    component: LeagueComponent,
+    children: [
+      { path: '', redirectTo: 'standings', pathMatch: 'full' },
+      { path: 'teams', component: TeamsComponent },
+      { path: 'rounds', component: RoundsComponent },
+      { path: 'matches', component: MatchesComponent },
+      { path: 'standings', component: StandingsComponent },
+    ]
+  }
 ];

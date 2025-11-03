@@ -2270,3 +2270,82 @@ input[type="file"]::-webkit-file-upload-button:hover {
     height: 60px;
   }
 }
+
+/* Compact Form Styles */
+
+.compact-form-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 2px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.compact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.compact-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.compact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 150px;
+}
+
+.compact-field label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.compact-field input,
+.compact-field select {
+  padding: 10px 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.compact-field input:focus,
+.compact-field select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1);
+}
+
+.compact-btn {
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  height: 42px;
+  align-self: flex-end;
+  white-space: nowrap;
+}
+
+/* Responsive Compact Form */
+@media (max-width: 768px) {
+  .compact-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .compact-field {
+    min-width: 100%;
+  }
+
+  .compact-btn {
+    width: 100%;
+    align-self: stretch;
+  }
+}
