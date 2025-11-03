@@ -1917,8 +1917,9 @@ input[type="file"]::-webkit-file-upload-button:hover {
   .nav-container {
     padding: 0;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: normal;
     max-width: 100%;
+    background-color: #1a1a1ae7;
   }
 
   .nav-brand {

@@ -5,9 +5,10 @@ import { RoundsComponent } from './rounds/rounds.component';
 import { MatchesComponent } from './matches/matches.component';
 import { StandingsComponent } from './standings/standings.component';
 import { LeagueComponent } from './league/league.component';
+import { HomeComponent } from './home/home.component';
 
 export const appRoutes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '', component: HomeComponent },
   {
     path: 'league',
     component: LeagueComponent,
