@@ -55,65 +55,66 @@
     <p>Crie jogos para começar a gerir a competição</p>
   </div>
 
-  <!-- Each Day Section - Flashscore Style -->
-  <div *ngFor="let dayGroup of matchesByDay" class="flashscore-day-section">
-    <!-- Day Header with Black Background -->
-    <div class="flashscore-day-header">
-      <h3>{{ dayGroup.displayDate }}</h3>
+  <!-- Each Day Section - Like Rounds Style -->
+  <div *ngFor="let dayGroup of matchesByDay" class="round-section">
+    <div class="round-header">
+      <div class="round-title">
+        <h3>{{ dayGroup.displayDate }}</h3>
+        <span class="round-stats">{{ dayGroup.matches.length }} jogo(s)</span>
+      </div>
     </div>
 
-    <!-- Matches in Gray Background -->
-    <div class="flashscore-matches-container">
-      <div *ngFor="let match of dayGroup.matches" class="flashscore-match-row">
-        <!-- Round Badge -->
-        <div class="flashscore-round">
-          <span class="flashscore-round-badge">{{ getRoundName(match.roundId) }}</span>
+    <div class="round-matches">
+      <div *ngFor="let match of dayGroup.matches" class="match-card-compact">
+        <div class="match-date">
+          <div class="date">{{ match.date ? (match.date | date:'dd/MM') : '--/--' }}</div>
+          <div class="time">{{ match.date ? (match.date | date:'HH:mm') : '--:--' }}</div>
         </div>
 
-        <!-- Time -->
-        <div class="flashscore-time">
-          {{ match.date ? (match.date | date:'HH:mm') : '--:--' }}
+        <div class="match-info">
+          <div class="match-round-label">
+            <span class="badge badge-info">{{ getRoundName(match.roundId) }}</span>
+          </div>
+
+          <div class="match-teams-vertical">
+            <div class="team-row">
+              <span class="team-name">{{ getTeamName(match.homeTeamId) }}</span>
+              <input
+                type="number"
+                class="team-score"
+                [class.winner]="(match.homeGoals ?? 0) > (match.awayGoals ?? 0) && match.homeGoals != null"
+                [(ngModel)]="match.homeGoals"
+                (change)="updateResult(match)"
+                placeholder="-"
+                min="0"
+              />
+            </div>
+
+            <div class="team-row">
+              <span class="team-name">{{ getTeamName(match.awayTeamId) }}</span>
+              <input
+                type="number"
+                class="team-score"
+                [class.winner]="(match.awayGoals ?? 0) > (match.homeGoals ?? 0) && match.awayGoals != null"
+                [(ngModel)]="match.awayGoals"
+                (change)="updateResult(match)"
+                placeholder="-"
+                min="0"
+              />
+            </div>
+          </div>
+
+          <div class="match-status" *ngIf="match.homeGoals != null && match.awayGoals != null">
+            <span class="badge badge-success">✓ Finalizado</span>
+          </div>
+          <div class="match-status" *ngIf="match.homeGoals == null || match.awayGoals == null">
+            <span class="badge badge-warning">⏱ Por jogar</span>
+          </div>
         </div>
 
-        <!-- Home Team -->
-        <div class="flashscore-team flashscore-home">
-          <img [src]="getTeamLogo(match.homeTeamId)" [alt]="getTeamName(match.homeTeamId)" class="flashscore-logo" />
-          <span class="flashscore-team-name">{{ getTeamName(match.homeTeamId) }}</span>
-        </div>
-
-        <!-- Score -->
-        <div class="flashscore-score">
-          <input
-            type="number"
-            class="flashscore-score-input"
-            [(ngModel)]="match.homeGoals"
-            (change)="updateResult(match)"
-            placeholder="-"
-            min="0"
-          />
-          <span class="flashscore-score-separator">-</span>
-          <input
-            type="number"
-            class="flashscore-score-input"
-            [(ngModel)]="match.awayGoals"
-            (change)="updateResult(match)"
-            placeholder="-"
-            min="0"
-          />
-        </div>
-
-        <!-- Away Team -->
-        <div class="flashscore-team flashscore-away">
-          <img [src]="getTeamLogo(match.awayTeamId)" [alt]="getTeamName(match.awayTeamId)" class="flashscore-logo" />
-          <span class="flashscore-team-name">{{ getTeamName(match.awayTeamId) }}</span>
-        </div>
-
-        <!-- Delete Button -->
-        <div class="flashscore-actions">
-          <button class="flashscore-delete-btn" (click)="removeMatch(match.id)" title="Remover jogo">
-            🗑️
-          </button>
-        </div>
+        <button class="btn-danger btn-small" (click)="removeMatch(match.id)" title="Remover jogo">
+          🗑️
+        </button>
       </div>
     </div>
   </div>

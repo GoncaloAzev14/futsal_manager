@@ -70,39 +70,17 @@ export class TeamsComponent implements OnInit {
       return;
     }
 
-    let logoData: string | undefined = undefined;
-
-    if (this.logoFile) {
-      // Convert to base64
-      logoData = await this.fileToBase64(this.logoFile);
-    }
-
-    await this.teamService.createTeam(this.name.trim(), undefined, logoData);
+    await this.teamService.createTeam(this.name.trim(), undefined);
 
     // Reset form
     this.name = '';
-    this.clearLogo();
 
     await this.load();
-  }
-
-  private fileToBase64(file: File): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
   }
 
   async remove(id: string) {
     if (!confirm('Remover equipa?')) return;
     await this.teamService.remove(id);
     await this.load();
-  }
-
-  getDefaultLogo(): string {
-    // Default shield/logo SVG
-    return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2U1ZTVlNSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSIgZmlsbD0iIzk5OSI+4pq94oC877iPPC90ZXh0Pjwvc3ZnPg==';
   }
 }

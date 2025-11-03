@@ -1650,233 +1650,6 @@ input[type="file"]::-webkit-file-upload-button:hover {
   }
 }
 
-/* Flashscore Style for Matches */
-.flashscore-day-section {
-  margin-bottom: 25px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-
-.flashscore-day-header {
-  background: #2e2e2e;
-  color: white;
-  padding: 12px 20px;
-}
-
-.flashscore-day-header h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: white;
-  border: none;
-  text-transform: capitalize;
-}
-
-.flashscore-matches-container {
-  background: #c5c5c5;
-}
-
-.flashscore-match-row {
-  display: grid;
-  grid-template-columns: auto 60px 1fr auto 1fr auto;
-  grid-template-areas: "round time home score away actions";
-  align-items: center;
-  gap: 15px;
-  padding: 15px 20px;
-  background: #ededed;
-  border-bottom: 1px solid #b0b0b0;
-  transition: background 0.2s ease;
-}
-
-.flashscore-match-row:last-child {
-  border-bottom: none;
-}
-
-.flashscore-match-row:hover {
-  background: #d0d0d0;
-}
-
-.flashscore-round {
-  grid-area: round;
-}
-
-.flashscore-round-badge {
-  background: #4a4a4a;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.flashscore-time {
-  grid-area: time;
-  text-align: center;
-  font-weight: 700;
-  font-size: 1rem;
-  color: #2e2e2e;
-}
-
-.flashscore-team {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.flashscore-home {
-  grid-area: home;
-  justify-content: flex-end;
-  text-align: right;
-}
-
-.flashscore-away {
-  grid-area: away;
-  justify-content: flex-start;
-  text-align: left;
-}
-
-.flashscore-logo {
-  width: 45px;
-  height: 45px;
-  object-fit: contain;
-  background: white;
-  border-radius: 50%;
-  padding: 5px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-.flashscore-team-name {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #2e2e2e;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 200px;
-}
-
-.flashscore-score {
-  grid-area: score;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: white;
-  padding: 8px 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.flashscore-score-input {
-  width: 45px;
-  height: 45px;
-  text-align: center;
-  font-size: 1.4rem;
-  font-weight: bold;
-  border: 2px solid #e0e0e0;
-  border-radius: 6px;
-  background: white;
-  color: #2e2e2e;
-  padding: 0;
-  transition: all 0.3s ease;
-}
-
-.flashscore-score-input:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1);
-}
-
-.flashscore-score-separator {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #666;
-}
-
-.flashscore-actions {
-  grid-area: actions;
-  display: flex;
-  justify-content: center;
-}
-
-.flashscore-delete-btn {
-  background: transparent;
-  border: none;
-  color: #666;
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-
-.flashscore-delete-btn:hover {
-  background: rgba(229, 57, 53, 0.15);
-  color: var(--danger);
-}
-
-/* Responsive Flashscore Style */
-@media (max-width: 1024px) {
-  .flashscore-match-row {
-    grid-template-columns: auto 1fr auto;
-    grid-template-areas:
-      "round time time"
-      "home home home"
-      "score score score"
-      "away away away"
-      "actions actions actions";
-    gap: 10px;
-    padding: 15px;
-  }
-
-  .flashscore-home,
-  .flashscore-away {
-    justify-content: center;
-    text-align: center;
-  }
-
-  .flashscore-score {
-    justify-self: center;
-  }
-
-  .flashscore-actions {
-    justify-self: end;
-  }
-}
-
-@media (max-width: 768px) {
-  .flashscore-match-row {
-    padding: 12px;
-  }
-
-  .flashscore-logo {
-    width: 40px;
-    height: 40px;
-  }
-
-  .flashscore-team-name {
-    font-size: 0.95rem;
-    max-width: 150px;
-  }
-
-  .flashscore-score-input {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-  }
-
-  .flashscore-round-badge {
-    font-size: 0.75rem;
-    padding: 4px 10px;
-  }
-
-  .flashscore-time {
-    font-size: 0.9rem;
-  }
-}
-
 /* ============================================ */
 /* MOBILE-FIRST APP STYLING */
 /* ============================================ */
@@ -1919,7 +1692,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
     flex-direction: row;
     justify-content: normal;
     max-width: 100%;
-    background-color: #1a1a1ae7;
+    background-color: #1a1a1a;
   }
 
   .nav-brand {
@@ -2011,79 +1784,6 @@ input[type="file"]::-webkit-file-upload-button:hover {
 
   .btn-primary {
     width: 100%;
-  }
-
-  /* Flashscore Mobile */
-  .flashscore-day-section {
-    margin-bottom: 12px;
-    border-radius: 8px;
-  }
-
-  .flashscore-day-header {
-    padding: 8px 12px;
-  }
-
-  .flashscore-day-header h3 {
-    font-size: 0.9rem;
-  }
-
-  .flashscore-match-row {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "round"
-      "time"
-      "home"
-      "score"
-      "away"
-      "actions";
-    gap: 8px;
-    padding: 12px;
-  }
-
-  .flashscore-round-badge {
-    font-size: 0.7rem;
-    padding: 4px 8px;
-  }
-
-  .flashscore-time {
-    font-size: 0.95rem;
-    text-align: left;
-  }
-
-  .flashscore-logo {
-    width: 32px;
-    height: 32px;
-    padding: 3px;
-  }
-
-  .flashscore-team-name {
-    font-size: 0.85rem;
-  }
-
-  .flashscore-score {
-    padding: 8px;
-  }
-
-  .flashscore-score-input {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-  }
-
-  .flashscore-score-separator {
-    font-size: 1.3rem;
-  }
-
-  .flashscore-delete-btn {
-    width: 100%;
-    padding: 8px;
-    font-size: 0.9rem;
-  }
-
-  /* Rounds View Mobile */
-  .round-section {
-    margin-bottom: 12px;
-    border-radius: 8px;
   }
 
   .round-header {
@@ -2242,24 +1942,72 @@ input[type="file"]::-webkit-file-upload-button:hover {
       top: calc(55px + env(safe-area-inset-top));
     }
   }
+
+  /* Compact Form Styles */
+
+  .compact-form-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: 2px solid var(--border-color);
+    margin-bottom: 20px;
+  }
+
+  .compact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .compact-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .compact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .compact-field label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .compact-field input,
+  .compact-field select {
+    padding: 10px 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background: white;
+    transition: all 0.3s ease;
+  }
+
+  .compact-field input:focus,
+  .compact-field select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1);
+  }
+
+  .compact-btn {
+    padding: 10px 24px;
+    font-size: 0.95rem;
+    height: 42px;
+    align-self: flex-end;
+    white-space: nowrap;
+  }
+
 }
 
 /* Extra small phones */
 @media (max-width: 360px) {
-  .flashscore-team-name {
-    font-size: 0.8rem;
-  }
-
-  .flashscore-logo {
-    width: 28px;
-    height: 28px;
-  }
-
-  .flashscore-score-input {
-    width: 36px;
-    height: 36px;
-    font-size: 1.1rem;
-  }
 
   .teams-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2269,84 +2017,5 @@ input[type="file"]::-webkit-file-upload-button:hover {
   .team-logo-container {
     width: 60px;
     height: 60px;
-  }
-}
-
-/* Compact Form Styles */
-
-.compact-form-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 2px solid var(--border-color);
-  margin-bottom: 20px;
-}
-
-.compact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.compact-row {
-  display: flex;
-  gap: 12px;
-  align-items: flex-end;
-  flex-wrap: wrap;
-}
-
-.compact-field {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  flex: 1;
-  min-width: 150px;
-}
-
-.compact-field label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.compact-field input,
-.compact-field select {
-  padding: 10px 12px;
-  border: 2px solid var(--border-color);
-  border-radius: 6px;
-  font-size: 0.95rem;
-  background: white;
-  transition: all 0.3s ease;
-}
-
-.compact-field input:focus,
-.compact-field select:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1);
-}
-
-.compact-btn {
-  padding: 10px 24px;
-  font-size: 0.95rem;
-  height: 42px;
-  align-self: flex-end;
-  white-space: nowrap;
-}
-
-/* Responsive Compact Form */
-@media (max-width: 768px) {
-  .compact-row {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .compact-field {
-    min-width: 100%;
-  }
-
-  .compact-btn {
-    width: 100%;
-    align-self: stretch;
   }
 }

@@ -151,19 +151,9 @@ export class MatchesComponent implements OnInit {
     return team ? team.name : 'Equipa';
   }
 
-  getTeamLogo(id?: string): string {
-    if (!id) return this.getDefaultLogo();
-    const team = this.teams.find(t => t.id === id);
-    return team?.logo || this.getDefaultLogo();
-  }
-
   getRoundName(roundId?: string): string {
     if (!roundId) return '';
     const round = this.rounds.find(r => r.id === roundId);
     return round ? round.name : '';
-  }
-
-  getDefaultLogo(): string {
-    return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2U1ZTVlNSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSIgZmlsbD0iIzk5OSI+4pq94oC877iPPC90ZXh0Pjwvc3ZnPg==';
   }
 }

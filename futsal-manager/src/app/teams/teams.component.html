@@ -6,47 +6,9 @@
     </div>
 
     <div class="add-team-form">
-      <div class="logo-upload-section">
-        <div class="logo-upload-area" [class.has-preview]="logoPreview">
-          <input
-            id="team-logo"
-            type="file"
-            accept="image/*"
-            (change)="onFileSelected($event)"
-            hidden
-          />
-
-          <label for="team-logo" class="logo-upload-label">
-            <div *ngIf="!logoPreview" class="upload-placeholder">
-              <div class="upload-icon">📸</div>
-              <div class="upload-hint">PNG, JPG (máx. 2MB)</div>
-            </div>
-
-            <div *ngIf="logoPreview" class="logo-preview-container">
-              <img [src]="logoPreview" alt="Preview" class="logo-preview-img" />
-              <div class="logo-overlay">
-                <span>Alterar</span>
-              </div>
-            </div>
-          </label>
-
-          <button
-            *ngIf="logoPreview"
-            type="button"
-            class="remove-logo-btn"
-            (click)="clearLogo()"
-            title="Remover logo"
-          >
-            ✕
-          </button>
-        </div>
-      </div>
 
       <div class="team-info-section">
         <div class="form-field-modern">
-          <label for="team-name" class="modern-label">
-            <span>Nome da Equipa</span>
-          </label>
           <input
             id="team-name"
             type="text"
@@ -85,14 +47,6 @@
           <button class="btn-danger btn-icon" (click)="remove(t.id)" title="Remover equipa">
             🗑️
           </button>
-        </div>
-
-        <div class="team-logo-container">
-          <img
-            [src]="t.logo || getDefaultLogo()"
-            [alt]="t.name"
-            class="team-logo"
-          />
         </div>
 
         <div class="team-name">{{ t.name }}</div>
