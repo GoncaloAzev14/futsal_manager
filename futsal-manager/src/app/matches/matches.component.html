@@ -1,9 +1,7 @@
 <div class="container fade-in">
   <!-- Compact Form to Add Match -->
-  <div class="card compact-form-card">
-    <div class="card-header">
-      <div class="card-title">➕ Adicionar Jogo</div>
-    </div>
+  <details class="card compact-form-card">
+      <summary class="card-title">Adicionar Jogo</summary>
 
     <div class="compact-form">
       <div class="compact-row">
@@ -46,7 +44,7 @@
         <button class="btn-primary compact-btn" (click)="createMatch()">Criar</button>
       </div>
     </div>
-  </div>
+  </details>
 
   <!-- Matches Grouped by Day -->
   <div *ngIf="matchesByDay.length === 0" class="empty-state">
