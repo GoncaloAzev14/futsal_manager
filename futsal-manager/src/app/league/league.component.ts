@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-league',
@@ -9,9 +9,9 @@ import { Location } from '@angular/common';
   styleUrl: './league.component.scss'
 })
 export class LeagueComponent {
-  constructor(private location: Location) {}
+  constructor(private router: Router) {}
 
   goBack() {
-    this.location.back();
+    this.router.navigate(['/']);
   }
 }

@@ -40,14 +40,12 @@
 
     <div *ngIf="teams.length > 0" class="teams-grid">
       <div *ngFor="let t of teams; let i = index" class="team-card">
-        <div class="team-card-header">
-          <span class="team-number">#{{ i + 1 }}</span>
-          <button class="btn-danger btn-icon" (click)="remove(t.id)" title="Remover equipa">
-            🗑️
-          </button>
-        </div>
+
 
         <div class="team-name">{{ t.name }}</div>
+        <button class="btn-delete" (click)="remove(t.id)" title="Remover equipa">
+          🗑️
+        </button>
       </div>
     </div>
   </div>

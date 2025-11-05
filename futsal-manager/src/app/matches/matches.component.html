@@ -64,14 +64,13 @@
 
     <div class="round-matches">
       <div *ngFor="let match of dayGroup.matches" class="match-card-compact">
-        <div class="match-date">
-          <div class="date">{{ match.date ? (match.date | date:'dd/MM') : '--/--' }}</div>
-          <div class="time">{{ match.date ? (match.date | date:'HH:mm') : '--:--' }}</div>
-        </div>
-
         <div class="match-info">
           <div class="match-round-label">
             <span class="badge badge-info">{{ getRoundName(match.roundId) }}</span>
+            <div class="time">{{ match.date ? (match.date | date:'HH:mm') : '--:--' }}</div>
+            <button class="btn-delete" (click)="removeMatch(match.id)" title="Remover jogo">
+              🗑️
+            </button>
           </div>
 
           <div class="match-teams-vertical">
@@ -102,17 +101,8 @@
             </div>
           </div>
 
-          <div class="match-status" *ngIf="match.homeGoals != null && match.awayGoals != null">
-            <span class="badge badge-success">✓ Finalizado</span>
-          </div>
-          <div class="match-status" *ngIf="match.homeGoals == null || match.awayGoals == null">
-            <span class="badge badge-warning">⏱ Por jogar</span>
-          </div>
-        </div>
 
-        <button class="btn-danger btn-small" (click)="removeMatch(match.id)" title="Remover jogo">
-          🗑️
-        </button>
+
       </div>
     </div>
   </div>
