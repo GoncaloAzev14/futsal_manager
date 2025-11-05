@@ -39,6 +39,7 @@ export class MatchesComponent implements OnInit {
   async ngOnInit() {
     this.teams = await this.teamService.getAll();
     this.rounds = await this.roundService.getAll();
+    this.setDefaultTime();
     await this.loadMatches();
   }
 
@@ -78,6 +79,20 @@ export class MatchesComponent implements OnInit {
         if (b.date === 'no-date') return -1;
         return new Date(b.date).getTime() - new Date(a.date).getTime();
       });
+  }
+
+  setDefaultTime() {
+    const now = new Date();
+    now.setHours(21, 0, 0, 0); // Set to 21:00
+
+    // Format to datetime-local input format: YYYY-MM-DDTHH:MM
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+
+    this.date = `${year}-${month}-${day}T${hours}:${minutes}`;
   }
 
   formatDate(dateStr: string): string {
@@ -126,7 +141,7 @@ export class MatchesComponent implements OnInit {
     this.selectedRoundId = undefined;
     this.homeTeamId = undefined;
     this.awayTeamId = undefined;
-    this.date = undefined;
+    this.setDefaultTime();
     this.location = undefined;
 
     await this.loadMatches();

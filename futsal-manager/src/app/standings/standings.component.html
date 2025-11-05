@@ -2,7 +2,7 @@
   <table>
     <thead>
       <tr>
-        <th>#</th><th>Equipa</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th><th>G</th>
+        <th>#</th><th>Equipa</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GM : GS</th><th>P</th>
       </tr>
     </thead>
     <tbody>
@@ -14,12 +14,12 @@
           <span *ngIf="i > 2">{{ i + 1 }}º</span>
         </td>
         <td>{{ r.teamName }}</td>
-        <td>{{ r.points }}</td>
         <td>{{ r.played }}</td>
         <td>{{ r.wins }}</td>
         <td>{{ r.draws }}</td>
         <td>{{ r.losses }}</td>
         <td>{{ r.goalsFor }} : {{ r.goalsAgainst }}</td>
+        <td><b>{{ r.points }}</b></td>
       </tr>
     </tbody>
   </table>

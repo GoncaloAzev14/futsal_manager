@@ -31,9 +31,19 @@
       </div>
 
       <div *ngFor="let match of round.matches" class="match-card-compact">
-        <div class="match-date">
-          <div class="date">{{ match.date ? (match.date | date:'dd/MM') : '--/--' }}</div>
-          <div class="time">{{ match.date ? (match.date | date:'HH:mm') : '--:--' }}</div>
+
+        <div class="time">
+          <div class="match-status" *ngIf="match.homeGoals != null && match.awayGoals != null">
+            <span class="badge badge-success">✓ Finalizado</span>
+          </div>
+          <div class="match-status" *ngIf="match.homeGoals == null || match.awayGoals == null">
+            <span class="badge badge-warning">⏱ Por jogar</span>
+          </div>
+
+          <div class="match-date">
+            <div class="date">{{ match.date ? (match.date | date:'dd/MM') : '--/--' }}</div>
+            <div class="time">{{ match.date ? (match.date | date:'HH:mm') : '--:--' }}</div>
+          </div>
         </div>
 
         <div class="match-info">
@@ -50,13 +60,6 @@
                 {{ match.awayGoals != null ? match.awayGoals : '-' }}
               </span>
             </div>
-          </div>
-
-          <div class="match-status" *ngIf="match.homeGoals != null && match.awayGoals != null">
-            <span class="badge badge-success">✓ Finalizado</span>
-          </div>
-          <div class="match-status" *ngIf="match.homeGoals == null || match.awayGoals == null">
-            <span class="badge badge-warning">⏱ Por jogar</span>
           </div>
         </div>
       </div>
