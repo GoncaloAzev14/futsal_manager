@@ -204,14 +204,14 @@ button, .btn {
 }
 
 button.btn-primary, .btn-primary {
-  background: var(--primary-color);
+  background: rgb(208, 208, 208);
   color: white;
 }
 
 button.btn-primary:hover, .btn-primary:hover {
-  background: var(--primary-dark);
+  background: rgb(155, 155, 155);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
+  box-shadow: rgb(96, 96, 96);
 }
 
 button.btn-danger, .btn-danger {
@@ -1200,7 +1200,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
   justify-content: center;
   gap: 10px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 166, 81, 0.3);
+  box-shadow: 0 4px 12px rgba(34, 34, 34, 0.3);
 }
 
 .btn-large:hover {
@@ -1212,7 +1212,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
 }
 
 .teams-count-badge {
-  background: var(--primary-color);
+  background: rgb(208, 208, 208);
   color: white;
   padding: 6px 16px;
   border-radius: 20px;
@@ -1742,6 +1742,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
   .container {
     margin-top: -70px;
     max-width: 100%;
+    padding-bottom: 75px;
   }
 
   /* Card optimizations */
@@ -1910,15 +1911,20 @@ input[type="file"]::-webkit-file-upload-button:hover {
 
   /* Standings Table Mobile */
   table {
+    width: 100%;
+    border-collapse: collapse;
     font-size: 0.7rem;
+    text-align: center;
   }
 
   th, td {
     padding: 6px 3px;
+    border-bottom: 1px solid #ddd;
   }
 
   th {
     font-size: 0.65rem;
+    text-align: center;
   }
 
   /* Empty States */
@@ -2015,6 +2021,58 @@ input[type="file"]::-webkit-file-upload-button:hover {
     white-space: nowrap;
   }
 
+  details {
+    &[open] {
+      > *:not(summary) {
+        animation: slideDown 0.3s ease;
+      }
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+details {
+  width: 100%;
+
+  &[open] summary {
+    margin-bottom: 15px;
+  }
+}
+
+summary {
+  cursor: pointer;
+  user-select: none;
+  padding: 15px;
+  background: var(--bg-primary);
+  border-radius: 8px;
+  font-weight: 600;
+  list-style: none; /* Remove default arrow */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &::-webkit-details-marker {
+    display: none; /* Remove default arrow on Safari */
+  }
+
+  &::after {
+    content: '▼';
+    transition: transform 0.3s ease;
+  }
+}
+
+details[open] summary::after {
+  transform: rotate(180deg);
 }
 
 /* Extra small phones */

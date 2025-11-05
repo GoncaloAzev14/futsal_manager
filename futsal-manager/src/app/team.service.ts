@@ -9,6 +9,12 @@ export class TeamService {
   constructor(private db: AppDB) {}
 
   async createTeam(name: string, shortName?: string) {
+    const existing = await this.db.teams.where('name').equalsIgnoreCase(name).first();
+    if (existing) {
+      alert(`A equipa "${name}" já existe.`);
+      return null;
+    }
+
     const team: Team = {
       id: uuidv4(),
       name,
