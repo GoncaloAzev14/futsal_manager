@@ -51,4 +51,8 @@ export class RoundService {
     }
     return this.db.rounds.delete(id);
   }
+
+  getAll(): Promise<Round[]> {
+    return this.db.rounds.toArray();
+  }
 }

@@ -22,6 +22,7 @@ export class MatchesComponent implements OnInit {
   teams: Team[] = [];
   rounds: Round[] = [];
 
+  competitionId?: string;
   selectedRoundId?: string;
   homeTeamId?: string;
   awayTeamId?: string;
@@ -121,6 +122,10 @@ export class MatchesComponent implements OnInit {
   }
 
   async createMatch() {
+    if (!this.competitionId) {
+      alert('Escolhe uma competição antes de criar o jogo.');
+      return;
+    }
     if (!this.selectedRoundId || !this.homeTeamId || !this.awayTeamId) {
       alert('Seleciona jornada e ambas equipas');
       return;
@@ -130,6 +135,7 @@ export class MatchesComponent implements OnInit {
       return;
     }
     await this.matchService.createMatch(
+      this.competitionId,
       this.selectedRoundId,
       this.homeTeamId,
       this.awayTeamId,

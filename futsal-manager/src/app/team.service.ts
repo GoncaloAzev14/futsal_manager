@@ -48,4 +48,8 @@ export class TeamService {
   remove(id: string) {
     return this.db.teams.delete(id);
   }
+
+  getAll() {
+    return this.db.teams.toArray();
+  }
 }
