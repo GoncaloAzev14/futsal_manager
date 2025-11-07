@@ -7,7 +7,7 @@ import { Competition } from '../model';
 
 @Component({
   selector: 'app-league',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './league.component.html',
   styleUrl: './league.component.scss'
 })

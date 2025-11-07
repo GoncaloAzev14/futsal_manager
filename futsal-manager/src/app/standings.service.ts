@@ -26,12 +26,19 @@ export class StandingsService {
     return [1, 1];
   }
 
-  async computeStandings(roundId?: string): Promise<StandingRow[]> {
-    const teams = await this.db.teams.toArray();
+  async computeStandings(competitionId?: string): Promise<StandingRow[]> {
+    // Filter teams by competitionId if provided
+    let teams: Team[];
+    if (competitionId) {
+      teams = await this.db.teams.where('competitionId').equals(competitionId).toArray();
+    } else {
+      teams = await this.db.teams.toArray();
+    }
 
+    // Filter matches by roundId and/or competitionId
     let matches: Match[] = [];
-    if (roundId) {
-      matches = await this.db.matches.where('roundId').equals(roundId).toArray();
+    if (competitionId) {
+      matches = await this.db.matches.where('competitionId').equals(competitionId).toArray();
     } else {
       matches = await this.db.matches.toArray();
     }

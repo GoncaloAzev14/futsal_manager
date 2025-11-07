@@ -11,14 +11,14 @@ import { MigrationService } from './migration.service';
 export class AppComponent {
   title = 'Veteranos';
 
-  constructor(private migrationService: MigrationService) {}
+  // constructor(private migrationService: MigrationService) {}
 
-  async ngOnInit() {
-    // Run migration on app startup
-    try {
-      await this.migrationService.migrateToCompetitions();
-    } catch (error) {
-      console.error('Failed to run migration:', error);
-    }
-  }
+  // async ngOnInit() {
+  //   // Run migration on app startup
+  //   try {
+  //     await this.migrationService.migrateToCompetitions();
+  //   } catch (error) {
+  //     console.error('Failed to run migration:', error);
+  //   }
+  // }
 }

@@ -5,6 +5,7 @@ import { RoundService } from '../round.service';
 import { Team, Round, Match } from '../model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 interface MatchesByDay {
   date: string;
@@ -34,18 +35,26 @@ export class MatchesComponent implements OnInit {
   constructor(
     private teamService: TeamService,
     private roundService: RoundService,
-    private matchService: MatchService
+    private matchService: MatchService,
+    private route: ActivatedRoute
   ) {}
 
   async ngOnInit() {
-    this.teams = await this.teamService.getAll();
-    this.rounds = await this.roundService.getAll();
-    this.setDefaultTime();
-    await this.loadMatches();
+    // Get competitionId from parent route
+    this.route.parent?.params.subscribe(async params => {
+      this.competitionId = params['competitionId'];
+
+      if (this.competitionId) {
+        this.teams = await this.teamService.getAllByCompetition(this.competitionId);
+        this.rounds = await this.roundService.getAllByCompetition(this.competitionId);
+        await this.loadMatches(this.competitionId);
+      }
+      this.setDefaultTime();
+    });
   }
 
-  async loadMatches() {
-    const allMatches = await this.matchService.getAll();
+  async loadMatches(competitionId: string) {
+      const allMatches = await this.matchService.getAllByCompetition(competitionId);
 
     // Group matches by date
     const matchMap = new Map<string, Match[]>();
@@ -150,20 +159,24 @@ export class MatchesComponent implements OnInit {
     this.setDefaultTime();
     this.location = undefined;
 
-    await this.loadMatches();
+    await this.loadMatches(this.competitionId);
   }
 
   async updateResult(m: Match) {
     if (!m.homeGoals && m.homeGoals !== 0) m.homeGoals = null;
     if (!m.awayGoals && m.awayGoals !== 0) m.awayGoals = null;
     await this.matchService.update(m);
-    await this.loadMatches();
+    if (this.competitionId) {
+      await this.loadMatches(this.competitionId);
+    }
   }
 
   async removeMatch(id: string) {
     if (!confirm('Remover jogo?')) return;
     await this.matchService.remove(id);
-    await this.loadMatches();
+    if (this.competitionId) {
+      await this.loadMatches(this.competitionId);
+    }
   }
 
   getTeamName(id?: string): string {

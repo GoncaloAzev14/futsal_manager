@@ -30,8 +30,8 @@ export class MatchService {
     return this.db.matches.where('roundId').equals(roundId).toArray();
   }
 
-  getAll() {
-    return this.db.matches.toArray();
+  getAllByCompetition(competitionId: string) {
+    return this.db.matches.where('competitionId').equals(competitionId).toArray();
   }
 
   update(match: Match) {
