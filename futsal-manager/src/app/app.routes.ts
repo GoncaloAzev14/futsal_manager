@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   {
-    path: 'league',
+    path: 'competition/:competitionId',
     component: LeagueComponent,
     children: [
       { path: '', redirectTo: 'standings', pathMatch: 'full' },
@@ -20,15 +20,6 @@ export const appRoutes: Routes = [
       { path: 'standings', component: StandingsComponent },
     ]
   },
-  {
-    path: 'cup',
-    component: LeagueComponent,
-    children: [
-      { path: '', redirectTo: 'standings', pathMatch: 'full' },
-      { path: 'teams', component: TeamsComponent },
-      { path: 'rounds', component: RoundsComponent },
-      { path: 'matches', component: MatchesComponent },
-      { path: 'standings', component: StandingsComponent },
-    ]
-  }
+  { path: 'league', redirectTo: 'competition/default', pathMatch: 'prefix' },
+  { path: 'cup', redirectTo: 'competition/default', pathMatch: 'prefix' }
 ];

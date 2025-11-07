@@ -4,8 +4,8 @@
       <span class="back-icon">←</span>
       <span class="back-text">Voltar</span>
     </button>
-    <div class="nav-title">
-      <span>Voltar</span>
+    <div class="nav-title" *ngIf="competition">
+      <span>{{ competition?.icon }} {{ competition?.name }}</span>
     </div>
   </div>
 </div>
@@ -13,10 +13,10 @@
 <div class="sub-nav">
   <div class="nav-container">
     <ul class="nav-links">
-      <li><a routerLink="/league/standings" routerLinkActive="active" data-icon="📊">Classificação</a></li>
-      <li><a routerLink="/league/matches" routerLinkActive="active" data-icon="⚽">Jogos</a></li>
-      <li><a routerLink="/league/rounds" routerLinkActive="active" data-icon="📅">Jornadas</a></li>
-      <li><a routerLink="/league/teams" routerLinkActive="active" data-icon="👥">Equipas</a></li>
+      <li><a [routerLink]="['/competition', competitionId, 'standings']" routerLinkActive="active" data-icon="📊">Classificação</a></li>
+      <li><a [routerLink]="['/competition', competitionId, 'matches']" routerLinkActive="active" data-icon="⚽">Jogos</a></li>
+      <li><a [routerLink]="['/competition', competitionId, 'rounds']" routerLinkActive="active" data-icon="📅">Jornadas</a></li>
+      <li><a [routerLink]="['/competition', competitionId, 'teams']" routerLinkActive="active" data-icon="👥">Equipas</a></li>
     </ul>
   </div>
 </div>
