@@ -354,4 +354,27 @@ body {
       font-size: 0.8rem;
     }
   }
+
+  .competitions-header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+  }
+
+  .settings-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .settings-link:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
 }

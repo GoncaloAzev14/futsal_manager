@@ -1,3 +1,4 @@
+// src/app/rounds/rounds.component.ts
 import { Component, OnInit } from '@angular/core';
 import { RoundService } from '../round.service';
 import { MatchService } from '../match.service';
@@ -5,6 +6,7 @@ import { TeamService } from '../team.service';
 import { Round, Match, Team } from '../model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 interface RoundWithMatches {
   id: string;
@@ -23,25 +25,29 @@ export class RoundsComponent implements OnInit {
   rounds: Round[] = [];
   roundsWithMatches: RoundWithMatches[] = [];
   teams: Team[] = [];
-  name = '';
+  competitionId: string = '';
 
   constructor(
     private roundService: RoundService,
     private matchService: MatchService,
-    private teamService: TeamService
+    private teamService: TeamService,
+    private route: ActivatedRoute
   ) {}
 
   async ngOnInit() {
-    await this.loadTeams();
-    await this.load();
+    this.route.parent?.params.subscribe(async params => {
+      this.competitionId = params['competitionId'];
+      await this.loadTeams();
+      await this.load();
+    });
   }
 
   async loadTeams() {
-    this.teams = await this.teamService.getAll();
+    this.teams = await this.teamService.getAllByCompetition(this.competitionId);
   }
 
   async load() {
-    this.rounds = await this.roundService.getAll();
+    this.rounds = await this.roundService.getAllByCompetition(this.competitionId);
 
     this.roundsWithMatches = await Promise.all(
       this.rounds.map(async (round) => {
@@ -65,14 +71,13 @@ export class RoundsComponent implements OnInit {
   }
 
   async add() {
-    // Get the highest order number and add 1
     const maxOrder = this.rounds.length > 0
       ? Math.max(...this.rounds.map(r => r.order))
       : 0;
     const nextNumber = maxOrder + 1;
     const name = `Jornada ${nextNumber}`;
 
-    await this.roundService.createRound(name, nextNumber);
+    await this.roundService.createRound(name, this.competitionId, nextNumber);
     await this.load();
   }
 

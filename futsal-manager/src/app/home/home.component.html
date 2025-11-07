@@ -3,23 +3,22 @@
     <h1>Selecionar Competição</h1>
   </div>
 
-  <div class="competitions-grid">
-    <a routerLink="/league" class="competition-card">
-      <div class="competition-icon">🏅</div>
-      <div class="details">
-        <h2>Liga AFSA</h2>
-        <p>Campeonato de Veteranos</p>
-      </div>
-      <span class="competition-badge">Competição Principal</span>
-    </a>
+  <div>
+    <a routerLink="/settings" class="settings-link">⚙️</a>
+  </div>
 
-    <a routerLink="/cup" class="competition-card">
-      <div class="competition-icon">🏆</div>
+  <div class="competitions-grid">
+    <a
+      *ngFor="let comp of competitions"
+      [routerLink]="['/competition', comp.id]"
+      class="competition-card"
+    >
+      <div class="competition-icon">{{ comp.icon }}</div>
       <div class="details">
-        <h2>Taça</h2>
-        <p>Torneio MKA</p>
+        <h2>{{ comp.name }}</h2>
+        <p>{{ comp.shortName }}</p>
       </div>
-      <span class="competition-badge">Em Breve</span>
+      <span class="competition-badge">{{ comp.type === 'league' ? 'Liga' : 'Taça' }}</span>
     </a>
   </div>
 </div>

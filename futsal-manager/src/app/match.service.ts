@@ -8,12 +8,13 @@ import { v4 as uuidv4 } from 'uuid';
 export class MatchService {
   constructor(private db: AppDB) {}
 
-  async createMatch(roundId: string, homeTeamId: string, awayTeamId: string, date?: string | null, location?: string) {
+  async createMatch(competitionId: string, roundId: string, homeTeamId: string, awayTeamId: string, date?: string | null, location?: string) {
     const m: Match = {
       id: uuidv4(),
       roundId,
       homeTeamId,
       awayTeamId,
+      competitionId,
       date: date ?? null,
       location,
       homeGoals: null,
@@ -29,8 +30,8 @@ export class MatchService {
     return this.db.matches.where('roundId').equals(roundId).toArray();
   }
 
-  getAll() {
-    return this.db.matches.toArray();
+  getAllByCompetition(competitionId: string) {
+    return this.db.matches.where('competitionId').equals(competitionId).toArray();
   }
 
   update(match: Match) {
@@ -41,8 +42,8 @@ export class MatchService {
     return this.db.matches.delete(id);
   }
 
-  async addGoal(matchId: string, teamId: string, playerName: string, minute?: number) {
-    const g: GoalEvent = { id: uuidv4(), matchId, teamId, playerName, minute: minute ?? null };
+  async addGoal(competitionId: string, matchId: string, teamId: string, playerName: string, minute?: number) {
+    const g: GoalEvent = { id: uuidv4(), competitionId, matchId, teamId, playerName, minute: minute ?? null };
     await this.db.goals.add(g);
 
     const match = await this.db.matches.get(matchId);

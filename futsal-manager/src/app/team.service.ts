@@ -8,10 +8,14 @@ import { v4 as uuidv4 } from 'uuid';
 export class TeamService {
   constructor(private db: AppDB) {}
 
-  async createTeam(name: string, shortName?: string) {
-    const existing = await this.db.teams.where('name').equalsIgnoreCase(name).first();
+  async createTeam(name: string, competitionId: string, shortName?: string) {
+    const existing = await this.db.teams
+      .where('name').equalsIgnoreCase(name)
+      .and(t => t.competitionId === competitionId)
+      .first();
+
     if (existing) {
-      alert(`A equipa "${name}" já existe.`);
+      alert(`A equipa "${name}" já existe nesta competição.`);
       return null;
     }
 
@@ -19,14 +23,18 @@ export class TeamService {
       id: uuidv4(),
       name,
       shortName,
+      competitionId,
       createdAt: Date.now()
     };
     await this.db.teams.add(team);
     return team;
   }
 
-  getAll() {
-    return this.db.teams.orderBy('name').toArray();
+  getAllByCompetition(competitionId: string) {
+    return this.db.teams
+      .where('competitionId')
+      .equals(competitionId)
+      .sortBy('name');
   }
 
   getById(id: string) {
@@ -39,5 +47,9 @@ export class TeamService {
 
   remove(id: string) {
     return this.db.teams.delete(id);
+  }
+
+  getAll() {
+    return this.db.teams.toArray();
   }
 }

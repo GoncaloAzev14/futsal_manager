@@ -1,0 +1,93 @@
+
+<div class="container fade-in">
+  <!-- Back Button -->
+  <div class="nav-container">
+    <button class="back-button" (click)="goBack()">
+      <span class="back-icon">←</span>
+      <span class="back-text">Voltar</span>
+    </button>
+    <div class="nav-title">
+      <h2>Definições</h2>
+    </div>
+  </div>
+
+  <!-- Manage Competitions -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Gerir</div>
+    </div>
+
+    <details class="add-competition-form">
+      <summary>Adicionar Competição</summary>
+      <div class="form-content">
+        <div class="form-field">
+          <label>Nome</label>
+          <input type="text" [(ngModel)]="newCompName" placeholder="Liga AFSA Sub-20">
+        </div>
+        <div class="form-field">
+          <label>Escalão</label>
+          <input type="text" [(ngModel)]="newCompShort" placeholder="Sub-20">
+        </div>
+        <div class="form-field">
+          <label>Ícone (emoji)</label>
+          <input type="text" [(ngModel)]="newCompIcon" placeholder="🏆" maxlength="2">
+        </div>
+        <div class="form-field">
+          <label>Tipo</label>
+          <select [(ngModel)]="newCompType">
+            <option value="league">Liga</option>
+            <option value="cup">Taça</option>
+          </select>
+        </div>
+        <button class="btn-primary" (click)="addCompetition()">Criar Competição</button>
+      </div>
+    </details>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Competições</div>
+      </div>
+      <div class="competitions-list">
+        <div *ngFor="let comp of competitions" class="competition-item">
+          <div class="comp-info">
+            <span class="comp-icon">{{ comp.icon }}</span>
+            <div>
+              <div class="comp-name">{{ comp.name }}</div>
+              <div class="comp-type">{{ comp.type === 'league' ? 'Liga' : 'Taça' }}</div>
+            </div>
+          </div>
+          <button class="btn-danger btn-small" (click)="deleteCompetition(comp.id)">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Management -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Gestão de Dados</div>
+    </div>
+
+    <div class="data-actions">
+      <button class="btn-secondary" (click)="exportData()">
+        📥 Exportar Dados
+      </button>
+      <button class="btn-secondary" (click)="importData()">
+        📤 Importar Dados
+      </button>
+      <button class="btn-danger" (click)="resetAll()">
+        🗑️ Apagar Tudo
+      </button>
+    </div>
+
+    <input
+      type="file"
+      #fileInput
+      accept=".json"
+      style="display: none"
+      (change)="onFileSelected($event)"
+    >
+  </div>
+</div>
