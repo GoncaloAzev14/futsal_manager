@@ -1,10 +1,17 @@
+<div class="home-header">
+  <div class="header-content">
+    <a routerLink="/settings" class="settings-button">
+      <span class="settings-icon">⚙️</span>
+    </a>
+    <div class="header-title">
+      <h1>Época {{ seasonText }}</h1>
+    </div>
+  </div>
+</div>
+
 <div class="competitions-container">
   <div class="competitions-header">
     <h1>Selecionar Competição</h1>
-  </div>
-
-  <div>
-    <a routerLink="/settings" class="settings-link">⚙️</a>
   </div>
 
   <div class="competitions-grid">
@@ -21,4 +28,11 @@
       <span class="competition-badge">{{ comp.type === 'league' ? 'Liga' : 'Taça' }}</span>
     </a>
   </div>
+</div>
+
+<div class="home-footer">
+  <a class="footer-link" href="https://www.facebook.com/AFSA.Famalicao" target="_blank">
+    <i class="fa-brands fa-facebook-f" style="color: white; background:#1877F2; border-radius:4px; padding:4px;"></i>
+    <span class="footer-text">Resultados AFSA</span>
+  </a>
 </div>

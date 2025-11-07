@@ -33,13 +33,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Container Principal */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
 /* Navegação */
 .nav-header {
   background: var(--bg-dark);
@@ -58,6 +51,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
+  border-radius: 8px;
 }
 
 .nav-brand {
@@ -1665,13 +1659,6 @@ input[type="file"]::-webkit-file-upload-button:hover {
   .nav-links a::before {
     content: attr(data-icon);
     font-size: 1rem;
-  }
-
-  /* Container adjustments */
-  .container {
-    margin-top: -70px;
-    max-width: 100%;
-    padding-bottom: 75px;
   }
 
   /* Card optimizations */
