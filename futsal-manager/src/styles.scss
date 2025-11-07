@@ -118,11 +118,13 @@ h3 {
 
 /* Cards */
 .card {
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   border-radius: 8px;
+  border: 2px solid var(--border-color);
   padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: var(--shadow);
+  margin-bottom: 10px;
+  margin-top: 20px;
+  box-shadow: black;
   transition: box-shadow 0.3s ease;
 }
 
@@ -241,7 +243,7 @@ button.btn-primary:hover, .btn-primary:hover {
 }
 
 button.btn-danger, .btn-danger {
-  background: rgba(230, 132, 131, 0.1);
+  background: rgba(104, 102, 102, 0.292);
   color: white;
   padding: 8px 16px;
   font-size: 0.85rem;
@@ -1976,7 +1978,7 @@ summary {
   cursor: pointer;
   user-select: none;
   padding: 15px;
-  background: var(--bg-primary);
+  background: var(--bg-secondary);
   border-radius: 8px;
   font-weight: 600;
   list-style: none; /* Remove default arrow */

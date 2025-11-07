@@ -1,0 +1,115 @@
+.competitions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.competition-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  border: 2px solid var(--border-color);
+}
+
+.comp-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.comp-icon {
+  font-size: 2rem;
+}
+
+.comp-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.comp-type {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.add-competition-form {
+  margin-top: 20px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.add-competition-form summary {
+  cursor: pointer;
+  font-weight: 600;
+  user-select: none;
+}
+
+.form-content {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.data-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .data-actions {
+    flex-direction: column;
+  }
+
+  .data-actions button {
+    width: 100%;
+  }
+
+  .back-text {
+    display: none;
+  }
+
+  .nav-title {
+    font-size: 1rem;
+  }
+
+  .nav-title .logo {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+
+  .back-button {
+    padding: 8px 12px;
+    background-color: rgb(27, 26, 26);
+    margin-left: -15px;
+  }
+
+  .back-icon {
+    font-size: 1.3rem;
+    color: white;
+  }
+}

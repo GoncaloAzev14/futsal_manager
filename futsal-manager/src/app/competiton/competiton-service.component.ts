@@ -1,7 +1,7 @@
 // src/app/competition.service.ts
 import { Injectable } from '@angular/core';
-import { AppDB } from './../db.service';
-import { Competition } from './../model';
+import { AppDB } from '../db.service';
+import { Competition } from '../model';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({ providedIn: 'root' })

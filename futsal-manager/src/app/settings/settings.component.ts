@@ -2,177 +2,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { CompetitionService } from '../competiton.service';
 import { MigrationService } from '../migration.service';
 import { AppDB } from '../db.service';
 import { Competition } from '../model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
-  template: `
-    <div class="container fade-in">
-      <h2>⚙️ Configurações</h2>
-
-      <!-- Manage Competitions -->
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">Gerir Competições</div>
-        </div>
-
-        <div class="competitions-list">
-          <div *ngFor="let comp of competitions" class="competition-item">
-            <div class="comp-info">
-              <span class="comp-icon">{{ comp.icon }}</span>
-              <div>
-                <div class="comp-name">{{ comp.name }}</div>
-                <div class="comp-type">{{ comp.type === 'league' ? 'Liga' : 'Taça' }}</div>
-              </div>
-            </div>
-            <button class="btn-danger btn-small" (click)="deleteCompetition(comp.id)">
-              Eliminar
-            </button>
-          </div>
-        </div>
-
-        <details class="add-competition-form">
-          <summary>Adicionar Nova Competição</summary>
-          <div class="form-content">
-            <div class="form-field">
-              <label>Nome</label>
-              <input type="text" [(ngModel)]="newCompName" placeholder="Liga AFSA Sub-20">
-            </div>
-            <div class="form-field">
-              <label>Nome Curto</label>
-              <input type="text" [(ngModel)]="newCompShort" placeholder="Sub-20">
-            </div>
-            <div class="form-field">
-              <label>Ícone (emoji)</label>
-              <input type="text" [(ngModel)]="newCompIcon" placeholder="🏆" maxlength="2">
-            </div>
-            <div class="form-field">
-              <label>Tipo</label>
-              <select [(ngModel)]="newCompType">
-                <option value="league">Liga</option>
-                <option value="cup">Taça</option>
-              </select>
-            </div>
-            <button class="btn-primary" (click)="addCompetition()">Criar Competição</button>
-          </div>
-        </details>
-      </div>
-
-      <!-- Data Management -->
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">Gestão de Dados</div>
-        </div>
-
-        <div class="data-actions">
-          <button class="btn-secondary" (click)="exportData()">
-            📥 Exportar Dados
-          </button>
-          <button class="btn-secondary" (click)="importData()">
-            📤 Importar Dados
-          </button>
-          <button class="btn-danger" (click)="resetAll()">
-            🗑️ Apagar Tudo
-          </button>
-        </div>
-
-        <input
-          type="file"
-          #fileInput
-          accept=".json"
-          style="display: none"
-          (change)="onFileSelected($event)"
-        >
-      </div>
-
-      <!-- Back Button -->
-      <div class="card">
-        <a routerLink="/" class="btn-primary" style="text-decoration: none; display: inline-block;">
-          ← Voltar ao Início
-        </a>
-      </div>
-    </div>
-  `,
-  styles: [`
-    .competitions-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .competition-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px;
-      background: var(--bg-primary);
-      border-radius: 8px;
-      border: 2px solid var(--border-color);
-    }
-
-    .comp-info {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .comp-icon {
-      font-size: 2rem;
-    }
-
-    .comp-name {
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .comp-type {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-    }
-
-    .add-competition-form {
-      margin-top: 20px;
-      border: 2px solid var(--border-color);
-      border-radius: 8px;
-      padding: 15px;
-    }
-
-    .add-competition-form summary {
-      cursor: pointer;
-      font-weight: 600;
-      user-select: none;
-    }
-
-    .form-content {
-      margin-top: 15px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .data-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 768px) {
-      .data-actions {
-        flex-direction: column;
-      }
-
-      .data-actions button {
-        width: 100%;
-      }
-    }
-  `]
+  imports: [CommonModule, FormsModule],
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent implements OnInit {
   competitions: Competition[] = [];
@@ -183,6 +24,7 @@ export class SettingsComponent implements OnInit {
   newCompType: 'league' | 'cup' = 'league';
 
   constructor(
+    private router: Router,
     private competitionService: CompetitionService,
     private migrationService: MigrationService,
     private db: AppDB
@@ -294,5 +136,9 @@ export class SettingsComponent implements OnInit {
 
   async resetAll() {
     await this.migrationService.resetDatabase();
+  }
+
+  goBack() {
+    this.router.navigate(['/']);
   }
 }
