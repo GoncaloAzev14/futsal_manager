@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - pwa  # branch de deploy
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -17,6 +18,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: pwa
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
