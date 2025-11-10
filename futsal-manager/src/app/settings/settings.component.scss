@@ -188,3 +188,9 @@ button.btn-primary.btn-valid, .btn-primary.btn-valid {
 button.btn-primary.btn-valid:hover, .btn-primary.btn-valid:hover {
   background: #45a049;
 }
+
+.button-remove {
+  padding: 5px 10px;
+  background: #f6f6f6df;
+  transition: all 0.3s ease;
+}
