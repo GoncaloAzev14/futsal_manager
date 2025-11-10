@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Resultados</string>
+    <string name="title_activity_main">Resultados</string>
+    <string name="package_name">com.gcazev14.futsal_manager</string>
+    <string name="custom_url_scheme">com.gcazev14.futsal_manager</string>
+</resources>
