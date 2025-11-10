@@ -7,5 +7,3 @@ ON MAIN
 after, run:
 * ng build --configuration production --base-href "/futsal_manager/"
 * npx angular-cli-ghpages --dir=dist/futsal-manager
-
-test
