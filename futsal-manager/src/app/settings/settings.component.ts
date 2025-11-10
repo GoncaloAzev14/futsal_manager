@@ -30,6 +30,10 @@ export class SettingsComponent implements OnInit {
     private db: AppDB
   ) {}
 
+  get isCompetitionFormValid(): boolean {
+    return !!(this.newCompName && this.newCompShort && this.newCompType);
+  }
+
   async ngOnInit() {
     await this.loadCompetitions();
   }

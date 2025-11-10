@@ -22,6 +22,10 @@ export class TeamsComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
+  get isTeamFormValid(): boolean {
+    return this.name.trim().length > 0;
+  }
+
   async ngOnInit() {
     // Get competitionId from parent route
     this.route.parent?.params.subscribe(async params => {

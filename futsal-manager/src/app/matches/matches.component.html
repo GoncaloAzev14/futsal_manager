@@ -41,7 +41,7 @@
           <input id="location" type="text" placeholder="Ex: Pavilhão" [(ngModel)]="location" />
         </div>
 
-        <button class="btn-primary compact-btn" (click)="createMatch()">Criar</button>
+        <button class="btn-primary compact-btn" [class.btn-valid]="isMatchFormValid" (click)="createMatch()">Criar</button>
       </div>
     </div>
   </details>

@@ -40,7 +40,7 @@
             <option value="cup">Taça</option>
           </select>
         </div>
-        <button class="btn-primary" (click)="addCompetition()">Criar Competição</button>
+        <button class="btn-primary" [class.btn-valid]="isCompetitionFormValid" (click)="addCompetition()">Criar Competição</button>
       </div>
     </details>
 
@@ -58,7 +58,7 @@
             </div>
           </div>
           <button class="btn-danger btn-small" (click)="deleteCompetition(comp.id)">
-            Eliminar
+            🗑️
           </button>
         </div>
       </div>

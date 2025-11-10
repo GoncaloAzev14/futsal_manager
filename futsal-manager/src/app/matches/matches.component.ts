@@ -39,6 +39,10 @@ export class MatchesComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
+  get isMatchFormValid(): boolean {
+    return !!(this.selectedRoundId && this.homeTeamId && this.awayTeamId);
+  }
+
   async ngOnInit() {
     // Get competitionId from parent route
     this.route.parent?.params.subscribe(async params => {
