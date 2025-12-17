@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:futsal-manager": "node dist/futsal-manager/server/server.mjs",
-    "deploy": "ng build --configuration=github-pages && npx angular-cli-ghpages --dir=dist/futsal-manager/"
+    "deploy": "ng build --configuration production --base-href \"/futsal_manager/\" && npx angular-cli-ghpages --dir=dist/futsal-manager"
   },
   "private": true,
   "dependencies": {
