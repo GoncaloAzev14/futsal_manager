@@ -54,7 +54,7 @@
   </div>
 
   <!-- Each Day Section - Like Rounds Style -->
-  <div *ngFor="let dayGroup of matchesByDay" class="round-section">
+  <div *ngFor="let dayGroup of matchesByDay; trackBy: trackByDay" class="round-section">
     <div class="round-header">
       <div class="round-title">
         <h3>{{ dayGroup.displayDate }}</h3>
@@ -63,7 +63,7 @@
     </div>
 
     <div class="round-matches">
-      <div *ngFor="let match of dayGroup.matches" class="match-card-compact">
+      <div *ngFor="let match of dayGroup.matches; trackBy: trackByMatch" class="match-card-compact">
         <div class="match-info">
           <div class="match-round-label">
             <span class="badge badge-info">{{ getRoundName(match.roundId) }}</span>

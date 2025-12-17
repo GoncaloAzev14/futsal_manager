@@ -194,4 +194,12 @@ export class MatchesComponent implements OnInit {
     const round = this.rounds.find(r => r.id === roundId);
     return round ? round.name : '';
   }
+
+  trackByDay(index: number, item: any): string {
+    return item.displayDate;
+  }
+
+  trackByMatch(index: number, item: any): number {
+    return item.id;
+  }
 }
