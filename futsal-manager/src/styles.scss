@@ -1,4 +1,13 @@
 /* Estilos Globais - Futsal Manager */
+html, body {
+  touch-action: manipulation; 
+  overscroll-behavior-y: none;
+  -webkit-text-size-adjust: 100%;
+}
+
+button, a, input, textarea {
+  touch-action: manipulation;
+}
 
 :root {
   --primary-color: #00a651;
