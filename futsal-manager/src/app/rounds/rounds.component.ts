@@ -29,6 +29,26 @@ export class RoundsComponent implements OnInit {
   teams: Team[] = [];
   competitionId: string = '';
   collapsedRounds = new Set<string>();
+  searchQuery = '';
+  sortMode: 'recent' | 'old' | 'name' = 'recent';
+
+  get filteredRounds(): RoundWithMatches[] {
+    let result = [...this.roundsWithMatches];
+    if (this.searchQuery.trim()) {
+      const q = this.searchQuery.trim().toLowerCase();
+      result = result.filter(r => r.name.toLowerCase().includes(q));
+    }
+    switch (this.sortMode) {
+      case 'recent': result.sort((a, b) => b.order - a.order); break;
+      case 'old':    result.sort((a, b) => a.order - b.order); break;
+      case 'name':   result.sort((a, b) => a.name.localeCompare(b.name, 'pt')); break;
+    }
+    return result;
+  }
+
+  get isDragDisabled(): boolean {
+    return !!this.searchQuery.trim() || this.sortMode !== 'recent';
+  }
 
   toggleCollapse(id: string): void {
     this.collapsedRounds.has(id) ? this.collapsedRounds.delete(id) : this.collapsedRounds.add(id);
@@ -78,7 +98,7 @@ export class RoundsComponent implements OnInit {
       })
     );
 
-    this.roundsWithMatches.sort((a, b) => b.order - a.order);
+    // sorting is handled by filteredRounds getter
   }
 
   async add() {

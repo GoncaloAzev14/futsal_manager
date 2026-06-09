@@ -14,10 +14,33 @@
     <p>Crie jornadas para organizar os jogos</p>
   </div>
 
+  <!-- Sort bar -->
+  <div class="sort-bar">
+    <div class="search-wrapper">
+      <ion-icon name="search-outline"></ion-icon>
+      <input
+        type="text"
+        placeholder="Pesquisar jornada..."
+        [(ngModel)]="searchQuery"
+        class="search-input"
+      />
+      <button *ngIf="searchQuery" class="clear-btn" (click)="searchQuery = ''">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+    </div>
+    <div class="sort-tabs">
+      <button [class.active]="sortMode === 'recent'" (click)="sortMode = 'recent'">Recente</button>
+      <button [class.active]="sortMode === 'old'"    (click)="sortMode = 'old'">Antigo</button>
+      <button [class.active]="sortMode === 'name'"   (click)="sortMode = 'name'">Nome</button>
+    </div>
+  </div>
+
   <div cdkDropList (cdkDropListDropped)="onDrop($event)" class="rounds-drag-list">
-    <div *ngFor="let round of roundsWithMatches; trackBy: trackByRound"
+    <div *ngFor="let round of filteredRounds; trackBy: trackByRound"
          cdkDrag
-         class="round-card">
+         [cdkDragDisabled]="isDragDisabled"
+         class="round-card"
+         [class.drag-disabled]="isDragDisabled">
 
       <div *cdkDragPlaceholder class="drag-placeholder"></div>
 

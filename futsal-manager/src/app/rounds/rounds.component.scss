@@ -95,6 +95,94 @@ $pending-dim:   rgba(217, 154, 58, 0.13);
   p { font-size: 0.85rem; color: $subtext; margin: 0; }
 }
 
+/* ── Sort bar ────────────────────────────────── */
+
+.sort-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 12px;
+  padding: 0 12px;
+  height: 42px;
+
+  ion-icon {
+    font-size: 1rem;
+    color: $subtext;
+    flex-shrink: 0;
+  }
+}
+
+.search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: $text;
+  font-size: 0.88rem;
+  padding: 0;
+  min-width: 0;
+
+  &::placeholder { color: $subtext; }
+}
+
+.clear-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  ion-icon { font-size: 1rem; color: $subtext; }
+  &:hover ion-icon { color: $text; }
+}
+
+.sort-tabs {
+  display: flex;
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 12px;
+  padding: 3px;
+  gap: 2px;
+
+  button {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-radius: 9px;
+    padding: 7px 0;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: $subtext;
+    cursor: pointer;
+    transition: background 150ms, color 150ms;
+    text-transform: none;
+
+    &.active {
+      background: $header-bg;
+      color: $text;
+    }
+
+    &:hover:not(.active) {
+      color: $text;
+    }
+  }
+}
+
+.round-card.drag-disabled .drag-handle {
+  opacity: 0.2;
+  cursor: default;
+  pointer-events: none;
+}
+
 /* ── Drag list ───────────────────────────────── */
 
 .rounds-drag-list {
