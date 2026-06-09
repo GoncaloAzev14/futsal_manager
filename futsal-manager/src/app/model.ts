@@ -12,6 +12,7 @@ export interface Team {
   id: string;
   name: string;
   shortName?: string;
+  logo?: string;           // base64 data-URL, compressed on upload
   competitionId: string;
   createdAt: number;
 }

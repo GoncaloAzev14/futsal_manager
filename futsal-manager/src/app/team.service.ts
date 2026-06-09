@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class TeamService {
   constructor(private db: AppDB) {}
 
-  async createTeam(name: string, competitionId: string, shortName?: string) {
+  async createTeam(name: string, competitionId: string, shortName?: string, logo?: string) {
     const existing = await this.db.teams
       .where('name').equalsIgnoreCase(name)
       .and(t => t.competitionId === competitionId)
@@ -23,6 +23,7 @@ export class TeamService {
       id: uuidv4(),
       name,
       shortName,
+      logo,
       competitionId,
       createdAt: Date.now()
     };

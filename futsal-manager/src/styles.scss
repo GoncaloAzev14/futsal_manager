@@ -1,6 +1,6 @@
 /* Estilos Globais - Futsal Manager */
 html, body {
-  touch-action: manipulation; 
+  touch-action: manipulation;
   overscroll-behavior-y: none;
   -webkit-text-size-adjust: 100%;
 }
@@ -10,22 +10,22 @@ button, a, input, textarea {
 }
 
 :root {
-  --primary-color: #00a651;
-  --primary-dark: #008542;
-  --secondary-color: #ff6b00;
-  --bg-primary: #f5f5f5;
-  --bg-secondary: #ffffff;
-  --bg-dark: #1a1a1a;
-  --text-primary: #333333;
-  --text-secondary: #666666;
-  --text-light: #999999;
-  --border-color: #e0e0e0;
-  --hover-bg: #f0f0f0;
-  --success: #00a651;
-  --danger: #e53935;
-  --warning: #fb8c00;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --primary-color: #00c47a;
+  --primary-dark: #00a366;
+  --secondary-color: #d99a3a;
+  --bg-primary: #0b0f1a;
+  --bg-secondary: #111827;
+  --bg-dark: #0d1120;
+  --text-primary: #dde8f8;
+  --text-secondary: #8b9ab5;
+  --text-light: #556680;
+  --border-color: rgba(255, 255, 255, 0.07);
+  --hover-bg: rgba(255, 255, 255, 0.05);
+  --success: #00c47a;
+  --danger: #e05c5c;
+  --warning: #d99a3a;
+  --shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 4px 24px rgba(0, 0, 0, 0.5);
 }
 
 * {
@@ -44,7 +44,7 @@ body {
 
 /* Navegação */
 .nav-header {
-  background: var(--bg-dark);
+  background: #172135;
   color: white;
   padding: 0;
   box-shadow: var(--shadow);
@@ -92,7 +92,7 @@ body {
 }
 
 .nav-links a {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   padding: 20px 20px;
   display: block;
@@ -103,14 +103,13 @@ body {
 
 .nav-links a:hover {
   color: white;
-  background: rgba(255, 255, 255, 0.1);
-  border-bottom-color: var(--primary-color);
+  border-bottom-color: #00c47a;
 }
 
 .nav-links a.active {
   color: white;
-  border-bottom-color: var(--primary-color);
-  background: rgba(123, 143, 133, 0.359);
+  border-bottom-color: #00c47a;
+  background: rgba(0, 196, 122, 0.08);
 }
 
 h3 {
@@ -121,13 +120,13 @@ h3 {
 
 /* Cards */
 .card {
-  background: var(--bg-primary);
-  border-radius: 8px;
-  border: 2px solid var(--border-color);
+  background: #111827;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
   padding: 20px;
   margin-bottom: 10px;
   margin-top: 20px;
-  box-shadow: black;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
   transition: box-shadow 0.3s ease;
 }
 
@@ -141,13 +140,13 @@ h3 {
   align-items: center;
   margin-bottom: 20px;
   padding-bottom: 12px;
-  border-bottom: 2px solid var(--border-color);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .card-title {
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #dde8f8;
 }
 
 /* Formulários */
@@ -169,9 +168,9 @@ h3 {
 
 label {
   font-weight: 600;
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  text-transform: uppercase;
+  color: #8b9ab5;
+  font-size: 0.8rem;
+  text-transform: none;
   letter-spacing: 0.5px;
 }
 
@@ -179,20 +178,21 @@ input[type="text"],
 input[type="number"],
 input[type="datetime-local"],
 select {
-  padding: 12px 16px;
-  border: 2px solid var(--border-color);
-  border-radius: 6px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
   font-size: 1rem;
   transition: all 0.3s ease;
-  background: white;
+  background: rgba(255, 255, 255, 0.06);
+  color: #dde8f8;
   width: 100%;
 }
 
 input:focus,
 select:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1);
+  border-color: #00c47a;
+  box-shadow: 0 0 0 3px rgba(0, 196, 122, 0.12);
 }
 
 /* Botões */
@@ -204,65 +204,75 @@ button, .btn {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: 0.5px;
 }
 
 button.btn-primary-btn {
-  background: #45a049;
-  color: white;
-  margin-bottom: -12px;
+  background: #00c47a;
+  color: #041a0f;
   width: 100%;
+  border-radius: 10px;
 }
 
 button.btn-primary-btn:hover {
-  background: #45a049;
+  background: #00a366;
   transform: translateY(-2px);
   box-shadow: var(--shadow-hover);
 }
 
 button.btn-primary-btn-large {
-  background: #45a049;
-  color: white;
-  margin-top: -10px;
+  background: #00c47a;
+  color: #041a0f;
   width: 100%;
+  border-radius: 10px;
 }
 
 button.btn-primary-btn-large:hover {
-  background: rgb(155, 155, 155);
+  background: #00a366;
   transform: translateY(-2px);
   box-shadow: var(--shadow-hover);
 }
 
 button.btn-primary, .btn-primary {
-  background: rgb(208, 208, 208);
-  color: white;
+  background: #00c47a;
+  color: #041a0f;
 }
 
 button.btn-primary:hover, .btn-primary:hover {
-  background: rgb(155, 155, 155);
+  background: #00a366;
   transform: translateY(-2px);
-  box-shadow: rgb(96, 96, 96);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn-valid {
+  background: #00c47a;
+  color: #041a0f;
 }
 
 button.btn-danger, .btn-danger {
-  background: rgba(104, 102, 102, 0.292);
-  color: white;
-  padding: 8px 16px;
-  font-size: 0.85rem;
+  background: transparent;
+  border: 1px solid rgba(224, 92, 92, 0.30);
+  color: #e05c5c;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  text-transform: none;
 }
 
 button.btn-danger:hover, .btn-danger:hover {
-  background: #c62828;
+  background: rgba(224, 92, 92, 0.10);
+  border-color: #e05c5c;
 }
 
 button.btn-secondary, .btn-secondary {
-  background: var(--text-light);
-  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  color: #dde8f8;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  text-transform: none;
 }
 
 button.btn-secondary:hover, .btn-secondary:hover {
-  background: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 /* Listas */
@@ -271,7 +281,7 @@ ul {
 }
 
 .list-item {
-  background: var(--bg-secondary);
+  background: #111827;
   padding: 16px 20px;
   margin-bottom: 10px;
   border-radius: 6px;
@@ -296,25 +306,27 @@ ul {
 /* Tabelas */
 table {
   width: 100%;
-  background: var(--bg-secondary);
-  border-radius: 8px;
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
   overflow: hidden;
   box-shadow: var(--shadow);
   border-collapse: collapse;
 }
 
 thead {
-  background: var(--bg-dark);
+  background: #172135;
   color: white;
 }
 
 th {
-  padding: 16px 12px;
+  padding: 12px 10px;
   text-align: left;
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   letter-spacing: 0.5px;
+  color: #8b9ab5;
 }
 
 th:first-child {
@@ -323,15 +335,16 @@ th:first-child {
 }
 
 td {
-  padding: 16px 12px;
-  border-bottom: 1px solid var(--border-color);
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 1rem;
+  color: #dde8f8;
 }
 
 td:first-child {
   text-align: center;
   font-weight: bold;
-  color: var(--text-secondary);
+  color: #8b9ab5;
 }
 
 tbody tr {
@@ -339,7 +352,7 @@ tbody tr {
 }
 
 tbody tr:hover {
-  background: var(--hover-bg);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 tbody tr:last-child td {
@@ -348,7 +361,7 @@ tbody tr:last-child td {
 
 /* Match Cards */
 .match-card {
-  background: var(--bg-secondary);
+  background: #111827;
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 12px;
@@ -423,25 +436,30 @@ tbody tr:last-child td {
   display: inline-block;
   padding: 4px 12px;
   border-radius: 12px;
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: 0.5px;
 }
 
 .badge-success {
-  background: rgba(0, 166, 81, 0.1);
-  color: var(--success);
+  background: rgba(0, 196, 122, 0.12);
+  color: #00c47a;
 }
 
 .badge-danger {
-  background: rgba(229, 57, 53, 0.1);
-  color: var(--danger);
+  background: rgba(224, 92, 92, 0.12);
+  color: #e05c5c;
 }
 
 .badge-warning {
-  background: rgba(251, 140, 0, 0.1);
-  color: var(--warning);
+  background: rgba(217, 154, 58, 0.12);
+  color: #d99a3a;
+}
+
+.badge-info {
+  background: rgba(100, 160, 255, 0.12);
+  color: #6aa0ff;
 }
 
 /* Responsive */
@@ -534,7 +552,7 @@ tbody tr:last-child td {
 .empty-state {
   text-align: center;
   padding: 60px 20px;
-  color: var(--text-light);
+  color: #556680;
 }
 
 .empty-state-icon {
@@ -546,12 +564,14 @@ tbody tr:last-child td {
 .empty-state-text {
   font-size: 1.2rem;
   margin-bottom: 10px;
+  color: #dde8f8;
 }
 
 /* Secção de cada Jornada */
 .round-section {
-  background: var(--bg-secondary);
-  border-radius: 8px;
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
   margin-bottom: 20px;
   box-shadow: var(--shadow);
   overflow: hidden;
@@ -561,9 +581,10 @@ tbody tr:last-child td {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.781);
+  padding: 13px 15px;
+  background: #172135;
   color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .round-title {
@@ -574,35 +595,39 @@ tbody tr:last-child td {
 
 .round-title h3 {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: white;
+  color: #dde8f8;
   border: none;
 }
 
 .round-stats {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
   padding: 4px 12px;
-  border-radius: 12px;
+  border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 500;
+  color: #8b9ab5;
 }
 
 .round-header .btn-danger {
-  background: rgba(255, 255, 255, 0.2);
-  border: 2px solid white;
-  color: white;
+  background: transparent;
+  border: 1px solid rgba(224, 92, 92, 0.30);
+  color: #e05c5c;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  text-transform: none;
 }
 
 .round-header .btn-danger:hover {
-  background: white;
-  color: var(--danger);
+  background: rgba(224, 92, 92, 0.10);
+  border-color: #e05c5c;
 }
 
 /* Jogos dentro da Jornada */
 .round-matches {
   padding: 15px;
-  background: var(--bg-primary);
+  background: #111827;
 }
 
 .empty-matches {
@@ -622,29 +647,29 @@ tbody tr:last-child td {
 
 /* Cards de Jogos Compactos */
 .match-card-compact {
-  background: white;
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: 3px solid rgba(0, 196, 122, 0.28);
+  border-radius: 10px;
   padding: 15px;
   margin-bottom: 10px;
   display: flex;
   gap: 15px;
   align-items: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
   transition: all 0.3s ease;
-  border-left: 4px solid var(--border-color);
 }
 
 .match-card-compact:hover {
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-  transform: translateX(5px);
   border-left-color: var(--primary-color);
+  transform: translateX(5px);
 }
 
 .match-date {
   min-width: 60px;
   text-align: center;
   padding: 8px;
-  background: var(--bg-primary);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 6px;
 }
 
@@ -697,7 +722,7 @@ tbody tr:last-child td {
   min-width: 35px;
   text-align: center;
   padding: 4px 8px;
-  background: var(--bg-primary);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 4px;
 }
 
@@ -707,14 +732,14 @@ input.team-score {
   font-size: 1.3rem;
   font-weight: bold;
   padding: 8px;
-  border: 2px solid var(--border-color);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 4px;
-  background: var(--bg-primary);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .team-score.winner {
   color: var(--primary-color);
-  background: rgba(0, 166, 81, 0.1);
+  background: rgba(0, 196, 122, 0.12);
 }
 
 .match-status {
@@ -725,7 +750,7 @@ input.team-score {
 
 /* Day Section Styles */
 .day-section {
-  background: var(--bg-secondary);
+  background: #111827;
   border-radius: 8px;
   margin-bottom: 20px;
   box-shadow: var(--shadow);
@@ -737,7 +762,7 @@ input.team-score {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background: rgba(0, 0, 0, 0.809);
+  background: #172135;
   color: white;
 }
 
@@ -751,7 +776,7 @@ input.team-score {
 }
 
 .day-stats {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
   padding: 4px 12px;
   border-radius: 12px;
   font-size: 0.85rem;
@@ -760,24 +785,24 @@ input.team-score {
 
 .day-matches {
   padding: 15px;
-  background: var(--bg-primary);
+  background: #111827;
 }
 
 /* Editable Match Cards */
 .match-card-editable {
-  background: white;
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: 3px solid rgba(0, 196, 122, 0.28);
+  border-radius: 10px;
   padding: 15px;
   margin-bottom: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
   transition: all 0.3s ease;
-  border-left: 4px solid var(--border-color);
 }
 
 .match-card-editable:hover {
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  border-left-color: var(--primary-color);
   transform: translateX(5px);
-  border-left-color: #21f391;
 }
 
 .match-info-editable {
@@ -789,11 +814,6 @@ input.team-score {
 
 .match-round-label {
   min-width: 80px;
-}
-
-.badge-info {
-  background: rgba(33, 150, 243, 0.1);
-  color: #21f38a;
 }
 
 .match-teams-editable {
@@ -817,22 +837,22 @@ input.team-score {
   font-size: 1.2rem;
   font-weight: bold;
   padding: 6px;
-  border: 2px solid var(--border-color);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 4px;
-  background: var(--bg-primary);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--text-secondary);
   transition: all 0.3s ease;
 }
 
 .score-input:focus {
   outline: none;
-  border-color: #21f391;
-  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+  border-color: #00c47a;
+  box-shadow: 0 0 0 3px rgba(0, 196, 122, 0.12);
 }
 
 .score-input.winner-input {
   color: var(--primary-color);
-  background: rgba(0, 166, 81, 0.05);
+  background: rgba(0, 196, 122, 0.08);
   border-color: var(--primary-color);
   font-weight: 900;
 }
@@ -853,7 +873,7 @@ input.team-score {
 .match-location {
   margin-top: 8px;
   padding-top: 8px;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
   color: var(--text-secondary);
 }
 
@@ -900,22 +920,22 @@ input.team-score {
 }
 
 .team-card {
-  background: white;
+  background: #111827;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  border: 2px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .team-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  border-color: var(--primary-color);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 196, 122, 0.30);
 }
 
 .team-card-header {
@@ -929,7 +949,7 @@ input.team-score {
   font-size: 0.9rem;
   font-weight: bold;
   color: var(--text-secondary);
-  background: var(--bg-primary);
+  background: rgba(255, 255, 255, 0.06);
   padding: 4px 10px;
   border-radius: 12px;
 }
@@ -946,7 +966,7 @@ input.team-score {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-primary);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 50%;
   padding: 15px;
   overflow: hidden;
@@ -973,9 +993,9 @@ input.team-score {
   align-items: center;
   gap: 10px;
   padding: 15px;
-  background: var(--bg-primary);
+  background: rgba(255, 255, 255, 0.04);
   border-radius: 8px;
-  border: 2px dashed var(--border-color);
+  border: 2px dashed rgba(255, 255, 255, 0.10);
 }
 
 .logo-preview img {
@@ -988,9 +1008,10 @@ input.team-score {
 /* File Input Styling */
 input[type="file"] {
   padding: 10px;
-  border: 2px solid var(--border-color);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 6px;
-  background: white;
+  background: rgba(255, 255, 255, 0.06);
+  color: #dde8f8;
   cursor: pointer;
   font-size: 0.95rem;
 }
@@ -1000,7 +1021,7 @@ input[type="file"]::-webkit-file-upload-button {
   border: none;
   border-radius: 4px;
   background: var(--primary-color);
-  color: white;
+  color: #041a0f;
   font-weight: 600;
   cursor: pointer;
   margin-right: 10px;
@@ -1045,8 +1066,8 @@ input[type="file"]::-webkit-file-upload-button:hover {
 
 /* Modern Add Team Form */
 .add-team-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 2px solid var(--border-color);
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .add-team-form {
@@ -1104,18 +1125,19 @@ input[type="file"]::-webkit-file-upload-button:hover {
 
 .modern-input {
   padding: 16px 20px;
-  border: 2px solid var(--border-color);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   font-size: 1.1rem;
   transition: all 0.3s ease;
-  background: white;
+  background: rgba(255, 255, 255, 0.06);
+  color: #dde8f8;
   font-weight: 500;
 }
 
 .modern-input:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 4px rgba(0, 166, 81, 0.1);
+  border-color: #00c47a;
+  box-shadow: 0 0 0 4px rgba(0, 196, 122, 0.12);
   transform: translateY(-2px);
 }
 
@@ -1132,11 +1154,11 @@ input[type="file"]::-webkit-file-upload-button:hover {
   justify-content: center;
   gap: 10px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(34, 34, 34, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
 .btn-large:hover {
-  box-shadow: 0 6px 20px rgba(0, 166, 81, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 196, 122, 0.3);
 }
 
 .btn-icon {
@@ -1144,8 +1166,8 @@ input[type="file"]::-webkit-file-upload-button:hover {
 }
 
 .teams-count-badge {
-  background: rgb(208, 208, 208);
-  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  color: #dde8f8;
   padding: 6px 16px;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -1161,16 +1183,16 @@ input[type="file"]::-webkit-file-upload-button:hover {
 }
 
 .team-card {
-  background: white;
+  background: #111827;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  border: 2px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.07);
   position: relative;
   overflow: hidden;
 }
@@ -1193,8 +1215,8 @@ input[type="file"]::-webkit-file-upload-button:hover {
 
 .team-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  border-color: var(--primary-color);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 196, 122, 0.30);
 }
 
 .team-card-header {
@@ -1207,11 +1229,11 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .team-number {
   font-size: 0.85rem;
   font-weight: bold;
-  color: white;
+  color: #041a0f;
   background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
   padding: 5px 12px;
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .btn-icon {
@@ -1232,17 +1254,17 @@ input[type="file"]::-webkit-file-upload-button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 50%;
   padding: 15px;
   overflow: hidden;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 }
 
 .team-card:hover .team-logo-container {
   transform: scale(1.1);
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .team-logo {
@@ -1301,7 +1323,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
 
 /* Compact Day Section */
 .day-section-compact {
-  background: var(--bg-secondary);
+  background: #111827;
   border-radius: 8px;
   margin-bottom: 20px;
   box-shadow: var(--shadow);
@@ -1313,7 +1335,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  background: #424242;
+  background: #172135;
   color: white;
 }
 
@@ -1327,7 +1349,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
 }
 
 .match-count {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
   padding: 4px 12px;
   border-radius: 12px;
   font-size: 0.85rem;
@@ -1348,13 +1370,13 @@ input[type="file"]::-webkit-file-upload-button:hover {
   gap: 15px;
   align-items: center;
   padding: 20px;
-  border-bottom: 1px solid var(--border-color);
-  background: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: transparent;
   transition: background 0.2s ease;
 }
 
 .match-row-compact:hover {
-  background: var(--hover-bg);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .match-row-compact:last-child {
@@ -1366,7 +1388,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
   grid-area: datetime;
   text-align: center;
   padding: 8px;
-  background: var(--bg-primary);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   min-width: 70px;
 }
@@ -1404,9 +1426,9 @@ input[type="file"]::-webkit-file-upload-button:hover {
   height: 35px;
   object-fit: contain;
   border-radius: 50%;
-  background: white;
+  background: rgba(255, 255, 255, 0.05);
   padding: 3px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .team-name-compact {
@@ -1423,7 +1445,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .round-badge {
   display: inline-block;
   background: var(--primary-color);
-  color: white;
+  color: #041a0f;
   padding: 6px 14px;
   border-radius: 16px;
   font-size: 0.85rem;
@@ -1446,22 +1468,22 @@ input[type="file"]::-webkit-file-upload-button:hover {
   font-size: 1.3rem;
   font-weight: bold;
   padding: 8px;
-  border: 2px solid var(--border-color);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
-  background: var(--bg-primary);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--text-secondary);
   transition: all 0.3s ease;
 }
 
 .score-input-compact:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1);
+  border-color: #00c47a;
+  box-shadow: 0 0 0 3px rgba(0, 196, 122, 0.12);
 }
 
 .score-input-compact.winner-score {
   color: var(--primary-color);
-  background: rgba(0, 166, 81, 0.05);
+  background: rgba(0, 196, 122, 0.08);
   border-color: var(--primary-color);
   font-weight: 900;
   font-size: 1.5rem;
@@ -1489,12 +1511,12 @@ input[type="file"]::-webkit-file-upload-button:hover {
 }
 
 .status-finished {
-  background: rgba(0, 166, 81, 0.1);
+  background: rgba(0, 196, 122, 0.12);
   color: var(--success);
 }
 
 .status-pending {
-  background: rgba(251, 140, 0, 0.1);
+  background: rgba(217, 154, 58, 0.12);
   color: var(--warning);
 }
 
@@ -1517,7 +1539,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
 }
 
 .btn-delete-compact:hover {
-  background: rgba(229, 57, 53, 0.1);
+  background: rgba(224, 92, 92, 0.10);
   color: var(--danger);
 }
 
@@ -1526,7 +1548,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
   grid-area: location;
   padding-top: 10px;
   margin-top: 10px;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   color: var(--text-secondary);
   font-size: 0.9rem;
 }
@@ -1627,8 +1649,8 @@ input[type="file"]::-webkit-file-upload-button:hover {
     left: 0;
     right: 0;
     z-index: 9999;
-    background: #2a2a2a;
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
+    background: #172135;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.25);
   }
 
   .nav-container {
@@ -1636,7 +1658,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
     flex-direction: row;
     justify-content: normal;
     max-width: 100%;
-    background-color: #1a1a1a;
+    background-color: #0d1120;
   }
 
   .nav-brand {
@@ -1665,6 +1687,12 @@ input[type="file"]::-webkit-file-upload-button:hover {
     border-bottom: 2px solid transparent;
   }
 
+  .nav-links a.active {
+    border-top: 3px solid #00c47a;
+    background: rgba(0, 196, 122, 0.08);
+    color: white;
+  }
+
   .nav-links a::before {
     content: attr(data-icon);
     font-size: 1rem;
@@ -1675,7 +1703,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
     border-radius: 8px;
     margin-bottom: 12px;
     padding: 12px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   }
 
   .card-header {
@@ -1844,7 +1872,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
 
   th, td {
     padding: 6px 3px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   th {
@@ -1888,8 +1916,8 @@ input[type="file"]::-webkit-file-upload-button:hover {
   /* Compact Form Styles */
 
   .compact-form-card {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    border: 2px solid var(--border-color);
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.07);
     margin-bottom: 20px;
   }
 
@@ -1918,24 +1946,26 @@ input[type="file"]::-webkit-file-upload-button:hover {
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-secondary);
-    text-transform: uppercase;
+    text-transform: none;
     letter-spacing: 0.5px;
   }
+
   .compact-field input,
   .compact-field select {
     padding: 10px 12px;
-    border: 2px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 6px;
     font-size: 0.95rem;
-    background: white;
+    background: rgba(255, 255, 255, 0.06);
+    color: #dde8f8;
     transition: all 0.3s ease;
   }
 
   .compact-field input:focus,
   .compact-field select:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1);
+    border-color: #00c47a;
+    box-shadow: 0 0 0 3px rgba(0, 196, 122, 0.12);
   }
 
   .compact-btn {
@@ -1968,15 +1998,18 @@ input[type="file"]::-webkit-file-upload-button:hover {
 
 details {
   width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 8px;
 }
 
 summary {
   cursor: pointer;
   user-select: none;
   padding: 15px;
-  background: var(--bg-secondary);
+  background: #111827;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 700;
+  color: #dde8f8;
   list-style: none; /* Remove default arrow */
   display: flex;
   justify-content: space-between;
@@ -2009,3 +2042,5 @@ details[open] summary::after {
     height: 60px;
   }
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

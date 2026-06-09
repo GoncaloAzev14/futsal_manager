@@ -1,5 +1,5 @@
 // src/app/rounds/rounds.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RoundService } from '../round.service';
 import { MatchService } from '../match.service';
 import { TeamService } from '../team.service';
@@ -7,6 +7,7 @@ import { Round, Match, Team } from '../model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 
 interface RoundWithMatches {
   id: string;
@@ -19,13 +20,23 @@ interface RoundWithMatches {
   selector: 'app-rounds',
   templateUrl: './rounds.component.html',
   styleUrls: ['./rounds.component.scss'],
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, DragDropModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class RoundsComponent implements OnInit {
   rounds: Round[] = [];
   roundsWithMatches: RoundWithMatches[] = [];
   teams: Team[] = [];
   competitionId: string = '';
+  collapsedRounds = new Set<string>();
+
+  toggleCollapse(id: string): void {
+    this.collapsedRounds.has(id) ? this.collapsedRounds.delete(id) : this.collapsedRounds.add(id);
+  }
+
+  isCollapsed(id: string): boolean {
+    return this.collapsedRounds.has(id);
+  }
 
   constructor(
     private roundService: RoundService,
@@ -71,13 +82,40 @@ export class RoundsComponent implements OnInit {
   }
 
   async add() {
-    const maxOrder = this.rounds.length > 0
-      ? Math.max(...this.rounds.map(r => r.order))
-      : 0;
-    const nextNumber = maxOrder + 1;
-    const name = `Jornada ${nextNumber}`;
+    const usedOrders = new Set(this.rounds.map(r => r.order));
+    let nextOrder = 1;
+    while (usedOrders.has(nextOrder)) nextOrder++;
+    const name = `Jornada ${nextOrder}`;
+    await this.roundService.createRound(name, this.competitionId, nextOrder);
+    await this.load();
+  }
 
-    await this.roundService.createRound(name, this.competitionId, nextNumber);
+  async onDrop(event: CdkDragDrop<RoundWithMatches[]>): Promise<void> {
+    if (event.previousIndex === event.currentIndex) return;
+
+    // Fixed slots in DESC order — round numbers never change
+    const slots = [...this.rounds].sort((a, b) => b.order - a.order);
+
+    // Compute the new assignment after the drag
+    const newAssignment = [...this.roundsWithMatches];
+    moveItemInArray(newAssignment, event.previousIndex, event.currentIndex);
+
+    // Fetch all affected matches before any writes (avoids circular overwrite)
+    const matchFetches = await Promise.all(
+      slots.map((slot, i) =>
+        newAssignment[i].id !== slot.id
+          ? this.matchService.getByRound(newAssignment[i].id)
+          : Promise.resolve([])
+      )
+    );
+
+    // Reassign matches to their new rounds in parallel
+    await Promise.all(
+      slots.flatMap((slot, i) =>
+        matchFetches[i].map(m => this.matchService.update({ ...m, roundId: slot.id }))
+      )
+    );
+
     await this.load();
   }
 
@@ -96,9 +134,39 @@ export class RoundsComponent implements OnInit {
     await this.load();
   }
 
+  trackByRound(_index: number, round: RoundWithMatches): string {
+    return round.id;
+  }
+
+  private readonly avatarColors = [
+    '#1e6e4a', '#0055aa', '#7b3fa6', '#b84231',
+    '#3a6e1a', '#1a6e7a', '#8a6b1a', '#7a1a5a'
+  ];
+
+  getTeam(id?: string) {
+    return id ? this.teams.find(t => t.id === id) : undefined;
+  }
+
   getTeamName(id?: string): string {
-    if (!id) return 'Equipa';
-    const team = this.teams.find(t => t.id === id);
-    return team ? team.name : 'Equipa';
+    return this.getTeam(id)?.name ?? 'Equipa';
+  }
+
+  getTeamInitial(id?: string): string {
+    const name = this.getTeam(id)?.name ?? '?';
+    return name.charAt(0).toUpperCase();
+  }
+
+  getTeamColor(id?: string): string {
+    const key = id ?? '';
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      hash = key.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return this.avatarColors[Math.abs(hash) % this.avatarColors.length];
+  }
+
+  getRoundNumber(name: string): string {
+    const match = name.match(/\d+/);
+    return match ? match[0] : '?';
   }
 }

@@ -1,65 +1,96 @@
 <div class="container fade-in">
-
-  <div class="card">
-    <div class="form-group">
-      <button class="btn-primary-btn" (click)="add()">Adicionar Jornada</button>
-    </div>
+  <div class="add-section">
+    <button class="btn-add" (click)="add()">
+      <ion-icon name="add-outline"></ion-icon>
+      Adicionar Jornada
+    </button>
   </div>
 
-  <!-- Lista de Jornadas com Jogos -->
   <div *ngIf="rounds.length === 0" class="empty-state">
-    <div class="empty-state-icon">📅</div>
+    <div class="empty-state-icon">
+      <ion-icon name="calendar-outline"></ion-icon>
+    </div>
     <div class="empty-state-text">Nenhuma jornada criada</div>
     <p>Crie jornadas para organizar os jogos</p>
   </div>
 
-  <!-- Cada Jornada -->
-  <div *ngFor="let round of roundsWithMatches" class="round-section">
-    <div class="round-header">
-      <div class="round-title">
-        <h3>{{ round.name }}</h3>
-      </div>
-      <button class="btn-danger" (click)="remove(round.id)">Remover Jornada</button>
-    </div>
+  <div cdkDropList (cdkDropListDropped)="onDrop($event)" class="rounds-drag-list">
+    <div *ngFor="let round of roundsWithMatches; trackBy: trackByRound"
+         cdkDrag
+         class="round-card">
 
-    <!-- Jogos desta Jornada -->
-    <div class="round-matches">
-      <div *ngIf="round.matches.length === 0" class="empty-matches">
-        <p>📋 Nenhum jogo nesta jornada</p>
-        <small>Vá a "Jogos" para adicionar jogos a esta jornada</small>
-      </div>
+      <div *cdkDragPlaceholder class="drag-placeholder"></div>
 
-      <div *ngFor="let match of round.matches" class="match-card-compact">
-
-        <div class="time">
-          <div class="match-status" *ngIf="match.homeGoals != null && match.awayGoals != null">
-            <span class="badge badge-success">✓ Finalizado</span>
+      <div class="round-header">
+        <div class="round-title">
+          <span cdkDragHandle class="drag-handle">
+            <ion-icon name="reorder-three-outline"></ion-icon>
+          </span>
+          <div class="round-badge">{{ getRoundNumber(round.name) }}</div>
+          <div class="round-label" (click)="toggleCollapse(round.id)">
+            <strong>{{ round.name }}</strong>
+            <small>{{ round.matches.length === 0 ? 'Nenhum jogo' : round.matches.length + (round.matches.length === 1 ? ' jogo' : ' jogos') }}</small>
           </div>
-          <div class="match-status" *ngIf="match.homeGoals == null || match.awayGoals == null">
-            <span class="badge badge-warning">⏱ Por jogar</span>
-          </div>
+          <ion-icon class="collapse-chevron" [class.collapsed]="isCollapsed(round.id)" name="chevron-down-outline"></ion-icon>
+        </div>
+        <button class="btn-remove-icon" (click)="remove(round.id)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </button>
+      </div>
 
-          <div class="match-date">
-            <div class="date">{{ match.date ? (match.date | date:'dd/MM') : '--/--' }}</div>
-            <div class="time">{{ match.date ? (match.date | date:'HH:mm') : '--:--' }}</div>
+      <div class="round-divider"></div>
+
+      <div class="round-matches" *ngIf="!isCollapsed(round.id)">
+
+        <div *ngIf="round.matches.length === 0" class="empty-matches">
+          <div class="empty-matches-icon">
+            <ion-icon name="calendar-clear-outline"></ion-icon>
+          </div>
+          <div class="empty-matches-text">
+            <small>Nenhum jogo nesta jornada</small>
           </div>
         </div>
 
-        <div class="match-info">
-          <div class="match-teams-vertical">
-            <div class="team-row">
-              <span class="team-name">{{ getTeamName(match.homeTeamId) }}</span>
-              <span class="team-score" [class.winner]="(match.homeGoals ?? 0) > (match.awayGoals ?? 0) && match.homeGoals != null">
-                {{ match.homeGoals != null ? match.homeGoals : '-' }}
-              </span>
+        <div *ngFor="let match of round.matches" class="match-card">
+
+          <div class="match-top">
+            <div class="match-datetime">
+              <ion-icon name="calendar-outline"></ion-icon>
+              <span>{{ match.date ? (match.date | date:'dd/MM') : '--/--' }}</span>
             </div>
-            <div class="team-row">
+            <span class="match-time">{{ match.date ? (match.date | date:'HH:mm') : '--:--' }}</span>
+            <span class="match-badge" [class.badge-done]="match.homeGoals != null && match.awayGoals != null"
+                                      [class.badge-pending]="match.homeGoals == null || match.awayGoals == null">
+              <ion-icon [name]="match.homeGoals != null && match.awayGoals != null ? 'checkmark' : 'time-outline'"></ion-icon>
+            </span>
+          </div>
+
+          <div class="match-body">
+            <div class="team home">
+              <div class="team-avatar" [style.background]="getTeam(match.homeTeamId)?.logo ? 'transparent' : getTeamColor(match.homeTeamId)">
+                <img *ngIf="getTeam(match.homeTeamId)?.logo" [src]="getTeam(match.homeTeamId)!.logo" alt="" />
+                <span *ngIf="!getTeam(match.homeTeamId)?.logo">{{ getTeamInitial(match.homeTeamId) }}</span>
+              </div>
+              <span class="team-name">{{ getTeamName(match.homeTeamId) }}</span>
+            </div>
+            <div class="score-box">
+              <div class="score" [class.winner]="(match.homeGoals ?? 0) > (match.awayGoals ?? 0) && match.homeGoals != null">
+                {{ match.homeGoals != null ? match.homeGoals : '–' }}
+              </div>
+              <div class="score-sep">:</div>
+              <div class="score" [class.winner]="(match.awayGoals ?? 0) > (match.homeGoals ?? 0) && match.awayGoals != null">
+                {{ match.awayGoals != null ? match.awayGoals : '–' }}
+              </div>
+            </div>
+            <div class="team away">
               <span class="team-name">{{ getTeamName(match.awayTeamId) }}</span>
-              <span class="team-score" [class.winner]="(match.awayGoals ?? 0) > (match.homeGoals ?? 0) && match.awayGoals != null">
-                {{ match.awayGoals != null ? match.awayGoals : '-' }}
-              </span>
+              <div class="team-avatar" [style.background]="getTeam(match.awayTeamId)?.logo ? 'transparent' : getTeamColor(match.awayTeamId)">
+                <img *ngIf="getTeam(match.awayTeamId)?.logo" [src]="getTeam(match.awayTeamId)!.logo" alt="" />
+                <span *ngIf="!getTeam(match.awayTeamId)?.logo">{{ getTeamInitial(match.awayTeamId) }}</span>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>

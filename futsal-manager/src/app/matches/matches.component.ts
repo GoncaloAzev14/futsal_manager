@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TeamService } from '../team.service';
 import { MatchService } from '../match.service';
 import { RoundService } from '../round.service';
@@ -17,7 +17,8 @@ interface MatchesByDay {
   selector: 'app-matches',
   templateUrl: './matches.component.html',
   styleUrls: ['./matches.component.scss'],
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MatchesComponent implements OnInit {
   teams: Team[] = [];
@@ -183,10 +184,31 @@ export class MatchesComponent implements OnInit {
     }
   }
 
+  private readonly avatarColors = [
+    '#1e6e4a', '#0055aa', '#7b3fa6', '#b84231',
+    '#3a6e1a', '#1a6e7a', '#8a6b1a', '#7a1a5a'
+  ];
+
+  getTeam(id?: string) {
+    return id ? this.teams.find(t => t.id === id) : undefined;
+  }
+
   getTeamName(id?: string): string {
-    if (!id) return 'Equipa';
-    const team = this.teams.find(t => t.id === id);
-    return team ? team.name : 'Equipa';
+    return this.getTeam(id)?.name ?? 'Equipa';
+  }
+
+  getTeamInitial(id?: string): string {
+    const name = this.getTeam(id)?.name ?? '?';
+    return name.charAt(0).toUpperCase();
+  }
+
+  getTeamColor(id?: string): string {
+    const key = id ?? '';
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      hash = key.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return this.avatarColors[Math.abs(hash) % this.avatarColors.length];
   }
 
   getRoundName(roundId?: string): string {

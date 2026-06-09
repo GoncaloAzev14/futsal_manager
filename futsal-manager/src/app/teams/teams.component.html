@@ -1,51 +1,58 @@
 <div class="container fade-in">
 
-  <details class="card add-team-card">
-    <summary class="card-title">Adicionar Nova Equipa</summary>
+  <!-- Add team form -->
+  <details class="add-team-card" open>
+    <summary>Adicionar Nova Equipa</summary>
 
     <div class="add-team-form">
-
-      <div class="team-info-section">
-        <div class="form-field-modern">
-          <input
-            id="team-name"
-            type="text"
-            class="modern-input"
-            placeholder="Ex: Covense, Pedome, etc..."
-            [(ngModel)]="name"
-            (keyup.enter)="add()"
-            autocomplete="off"
-          />
+      <div class="form-row">
+        <div class="logo-upload" (click)="logoInput.click()" title="Carregar logo">
+          <img *ngIf="pendingLogo" [src]="pendingLogo" alt="logo" />
+          <ion-icon *ngIf="!pendingLogo" name="camera-outline"></ion-icon>
         </div>
-
-        <button class="btn-primary-btn-large" [class.btn-valid]="isTeamFormValid" (click)="add()">
-          <span>Adicionar Equipa</span>
-        </button>
+        <input
+          class="modern-input"
+          type="text"
+          placeholder="Nome da equipa..."
+          [(ngModel)]="name"
+          (keyup.enter)="add()"
+          autocomplete="off"
+        />
       </div>
+      <button class="btn-add-team" [class.btn-valid]="isTeamFormValid" (click)="add()">
+        Adicionar Equipa
+      </button>
+      <input #logoInput type="file" accept="image/*" style="display:none" (change)="onLogoSelected($event)" />
     </div>
   </details>
 
-  <div class="card">
-    <div class="card-header">
-      <div class="card-title">Equipas Participantes</div>
-      <div class="teams-count-badge">{{ teams.length }} equipa(s)</div>
+  <!-- Teams list -->
+  <div class="teams-card">
+    <div class="teams-header">
+      <span class="teams-title">Equipas Participantes</span>
+      <span class="teams-count">{{ teams.length }}</span>
     </div>
 
     <div *ngIf="teams.length === 0" class="empty-state">
-      <div class="empty-state-icon">⚽</div>
-      <div class="empty-state-text">Nenhuma equipa adicionada</div>
-      <p>Comece por adicionar equipas à competição</p>
+      <ion-icon name="people-outline" class="empty-icon"></ion-icon>
+      <strong>Nenhuma equipa adicionada</strong>
+      <small>Comece por adicionar equipas à competição</small>
     </div>
 
-    <div *ngIf="teams.length > 0" class="teams-grid">
-      <div *ngFor="let t of teams; let i = index" class="team-card">
-
-
-        <div class="team-name">{{ t.name }}</div>
-        <button class="btn-delete" (click)="remove(t.id)" title="Remover equipa">
-          🗑️
+    <div *ngIf="teams.length > 0" class="teams-list">
+      <div *ngFor="let t of teams" class="team-card">
+        <div class="team-avatar" [style.background]="t.logo ? 'transparent' : getTeamColor(t.id)">
+          <img *ngIf="t.logo" [src]="t.logo" [alt]="t.name" />
+          <span *ngIf="!t.logo">{{ getTeamInitial(t.name) }}</span>
+        </div>
+        <div class="team-info">
+          <span class="team-name">{{ t.name }}</span>
+        </div>
+        <button class="btn-remove-team" (click)="remove(t.id)" title="Remover equipa">
+          <ion-icon name="trash-outline"></ion-icon>
         </button>
       </div>
     </div>
   </div>
+
 </div>

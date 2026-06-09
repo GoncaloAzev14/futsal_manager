@@ -15,10 +15,33 @@
 <div class="sub-nav">
   <div class="nav-container">
     <ul class="nav-links">
-      <li><a [routerLink]="['/competition', competitionId, 'standings']" routerLinkActive="active" data-icon="📊">Classificação</a></li>
-      <li><a [routerLink]="['/competition', competitionId, 'matches']" routerLinkActive="active" data-icon="⚽">Jogos</a></li>
-      <li><a [routerLink]="['/competition', competitionId, 'rounds']" routerLinkActive="active" data-icon="📅">Jornadas</a></li>
-      <li><a [routerLink]="['/competition', competitionId, 'teams']" routerLinkActive="active" data-icon="👥">Equipas</a></li>
+      <li>
+        <a [routerLink]="['/competition', competitionId, 'standings']">
+          <lucide-icon [img]="ChartColumn"></lucide-icon>
+          <span>Classificação</span>
+        </a>
+      </li>
+
+      <li>
+        <a [routerLink]="['/competition', competitionId, 'matches']">
+          <lucide-icon [img]="CircleDot"></lucide-icon>
+          <span>Jogos</span>
+        </a>
+      </li>
+
+      <li>
+        <a [routerLink]="['/competition', competitionId, 'rounds']">
+          <lucide-icon [img]="CalendarDays"></lucide-icon>
+          <span>Jornadas</span>
+        </a>
+      </li>
+
+      <li>
+        <a [routerLink]="['/competition', competitionId, 'teams']">
+          <lucide-icon [img]="Users"></lucide-icon>
+          <span>Equipas</span>
+        </a>
+      </li>
     </ul>
   </div>
 </div>

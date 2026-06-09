@@ -1,196 +1,99 @@
-.competitions-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-}
+$surface: #111827;
+$header-bg: #172135;
+$accent: #00c47a;
+$accent-dim: rgba(0,196,122,0.12);
+$text: #dde8f8;
+$subtext: #556680;
+$border: rgba(255,255,255,0.07);
+$danger: #e05c5c;
+$danger-dim: rgba(224,92,92,0.10);
 
-/* Container adjustments */
-.container {
-  margin-top: -90px;
-  max-width: 100%;
+:host {
+  display: block;
+  &::before { content:''; position:fixed; inset:0; background:#0b0f1a; z-index:-1; }
 }
+.main-nav {
+  position:fixed; top:0; left:0; right:0; background:#0d1120;
+  border-bottom:1px solid rgba(255,255,255,0.07); z-index:1000; height:50px;
+}
+.nav-container {
+  display:flex; align-items:center; justify-content:space-between; padding:0 16px; height:100%;
+}
+.nav-title { font-size:1rem; font-weight:700; color:white; h2 { margin:0; font-size:1rem; font-weight:700; } }
+.back-button {
+  background:transparent; border:none; color:white; font-size:0.95rem; font-weight:600;
+  cursor:pointer; padding:8px 12px; border-radius:8px; display:flex; align-items:center;
+  gap:8px; text-transform:none; letter-spacing:0;
+  &:hover { background:rgba(255,255,255,0.08); }
+}
+.back-icon { font-size:1.3rem; }
 
-.competition-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  background: var(--bg-secondary);
-  border-radius: 8px;
-  border: 2px solid var(--border-color);
-}
+.container { margin-top:-90px; padding:70px 16px 30px; max-width:600px; margin-left:auto; margin-right:auto; }
 
-.comp-info {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+.card {
+  background:$surface; border:1px solid $border; border-radius:14px; overflow:hidden;
+  margin-bottom:14px; padding:0; box-shadow:0 2px 16px rgba(0,0,0,0.35);
 }
-
-.comp-icon {
-  font-size: 2rem;
-}
-
-.comp-name {
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-
-.comp-type {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
+.card-header { background:$header-bg; padding:13px 15px; border-bottom:1px solid $border; margin-bottom:0; }
+.card-title { font-size:0.9rem; font-weight:700; color:$text; }
 
 .add-competition-form {
-  margin-top: 20px;
-  border: 2px solid var(--border-color);
-  border-radius: 8px;
-  padding: 8px;
-}
-
-.add-competition-form summary {
-  cursor: pointer;
-  font-weight: 600;
-  user-select: none;
-}
-
-.form-content {
-  margin-top: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-}
-
-.data-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.nav-title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
-}
-
-@media (max-width: 768px) {
-  .data-actions {
-    flex-direction: column;
+  border:none; border-bottom:1px solid $border;
+  summary {
+    padding:13px 15px; cursor:pointer; font-weight:700; font-size:0.88rem; color:$text;
+    user-select:none; list-style:none; background:transparent;
+    display:flex; align-items:center; justify-content:space-between; text-transform:none;
+    &::after { content:'▾'; font-size:0.82rem; color:$subtext; transition:transform 220ms; }
   }
-
-  .data-actions button {
-    width: 100%;
-  }
-
-  .back-text {
-    display: none;
-  }
-
-  .nav-title {
-    font-size: 1rem;
-  }
-
-  .nav-title .logo {
-    width: 30px;
-    height: 30px;
-    font-size: 1rem;
-  }
-
-  .back-button {
-    padding: 8px 12px;
-    background-color: rgb(27, 26, 26);
-    margin-left: -15px;
-  }
-
-  .back-icon {
-    font-size: 1.3rem;
-    color: white;
+  &[open] summary::after { transform:rotate(-180deg); }
+}
+.form-content { padding:14px 16px 16px; display:flex; flex-direction:column; gap:12px; border-top:1px solid $border; }
+.form-field {
+  display:flex; flex-direction:column; gap:5px;
+  label { font-size:0.72rem; font-weight:700; color:$subtext; text-transform:uppercase; letter-spacing:0.4px; }
+  input, select {
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+    border-radius:10px; color:$text; padding:9px 12px; font-size:0.85rem; width:100%;
+    &:focus { outline:none; border-color:$accent; box-shadow:0 0 0 3px $accent-dim; }
+    option { background:#172135; color:$text; }
   }
 }
-
-button.btn-primary-btn {
-  background: rgb(208, 208, 208);
-  color: white;
-  margin-bottom: -12px;
-  width: 100%;
-  transition: all 0.3s ease;
+.btn-primary {
+  background:rgba(255,255,255,0.08); color:$subtext; border:none; border-radius:10px;
+  padding:11px; font-size:0.88rem; font-weight:700; text-transform:none; width:100%; cursor:not-allowed;
+  transition:background 160ms, color 160ms;
+  &.btn-valid { background:$accent; color:#041a0f; cursor:pointer; &:hover { opacity:0.9; } }
 }
 
-button.btn-primary-btn:hover {
-  background: rgb(155, 155, 155);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
+.competitions-list { display:flex; flex-direction:column; gap:7px; padding:10px; }
+.competition-item {
+  background:rgba(255,255,255,0.03); border:1px solid $border; border-radius:10px;
+  padding:12px 14px; display:flex; justify-content:space-between; align-items:center; gap:12px;
+  transition:background 140ms;
+  &:hover { background:rgba(255,255,255,0.055); }
 }
-
-button.btn-primary-btn.btn-valid {
-  background: #4caf50;
-  color: white;
-  cursor: pointer;
-}
-
-button.btn-primary-btn.btn-valid:hover {
-  background: #45a049;
-}
-
-button.btn-primary-btn-large {
-  background: rgb(208, 208, 208);
-  color: white;
-  margin-top: -10px;
-  width: 100%;
-  transition: all 0.3s ease;
-}
-
-button.btn-primary-btn-large:hover {
-  background: rgb(155, 155, 155);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
-}
-
-button.btn-primary-btn-large.btn-valid {
-  background: #4caf50;
-  color: white;
-  cursor: pointer;
-}
-
-button.btn-primary-btn-large.btn-valid:hover {
-  background: #45a049;
-}
-
-button.btn-primary, .btn-primary {
-  background: rgb(208, 208, 208);
-  color: white;
-  transition: all 0.3s ease;
-}
-
-button.btn-primary:hover, .btn-primary:hover {
-  background: rgb(155, 155, 155);
-  transform: translateY(-2px);
-  box-shadow: rgb(96, 96, 96);
-}
-
-button.btn-primary.btn-valid, .btn-primary.btn-valid {
-  background: #4caf50;
-  color: white;
-}
-
-button.btn-primary.btn-valid:hover, .btn-primary.btn-valid:hover {
-  background: #45a049;
-}
-
+.comp-info { display:flex; align-items:center; gap:12px; }
+.comp-icon { font-size:1.8rem; }
+.comp-name { font-size:0.88rem; font-weight:700; color:$text; }
+.comp-type { font-size:0.74rem; color:$subtext; margin-top:2px; }
 .button-remove {
-  padding: 5px 10px;
-  background: #f6f6f6df;
-  transition: all 0.3s ease;
+  background:transparent; border:none; cursor:pointer; padding:4px 8px;
+  border-radius:6px; font-size:1rem; opacity:0.4; transition:opacity 150ms; text-transform:none;
+  &:hover { opacity:1; }
 }
+
+.data-actions { padding:14px 15px; display:flex; flex-direction:column; gap:8px; }
+.btn-secondary {
+  background:rgba(255,255,255,0.06); color:$text; border:1px solid rgba(255,255,255,0.10);
+  border-radius:10px; padding:11px 16px; font-size:0.88rem; font-weight:600; text-transform:none;
+  cursor:pointer; text-align:left; transition:background 150ms; width:100%;
+  &:hover { background:rgba(255,255,255,0.10); }
+}
+.btn-danger {
+  background:transparent; color:$danger; border:1px solid rgba(224,92,92,0.30);
+  border-radius:10px; padding:11px 16px; font-size:0.88rem; font-weight:700; text-transform:none;
+  cursor:pointer; text-align:left; width:100%; transition:background 150ms, border-color 150ms;
+  &:hover { background:$danger-dim; border-color:$danger; }
+}
+
+@media (max-width: 768px) { .back-text { display:none; } }

@@ -1,7 +1,7 @@
 <div class="container fade-in">
-  <!-- Compact Form to Add Match -->
+  <!-- Add Match Form -->
   <details class="card compact-form-card">
-      <summary class="card-title">Adicionar Jogo</summary>
+    <summary class="card-title">Adicionar Jogo</summary>
 
     <div class="compact-form">
       <div class="compact-row">
@@ -41,19 +41,19 @@
           <input id="location" type="text" placeholder="Ex: Pavilhão" [(ngModel)]="location" />
         </div>
 
-        <button class="btn-primary compact-btn" [class.btn-valid]="isMatchFormValid" (click)="createMatch()">Criar</button>
+        <button class="compact-btn" [class.btn-valid]="isMatchFormValid" (click)="createMatch()">Criar</button>
       </div>
     </div>
   </details>
 
-  <!-- Matches Grouped by Day -->
+  <!-- Empty state -->
   <div *ngIf="matchesByDay.length === 0" class="empty-state">
     <div class="empty-state-icon">⚽</div>
     <div class="empty-state-text">Nenhum jogo criado</div>
     <p>Crie jogos para começar a gerir a competição</p>
   </div>
 
-  <!-- Each Day Section - Like Rounds Style -->
+  <!-- Matches grouped by day -->
   <div *ngFor="let dayGroup of matchesByDay; trackBy: trackByDay" class="round-section">
     <div class="round-header">
       <div class="round-title">
@@ -63,45 +63,58 @@
     </div>
 
     <div class="round-matches">
-      <div *ngFor="let match of dayGroup.matches; trackBy: trackByMatch" class="match-card-compact">
-        <div class="match-info">
-          <div class="match-round-label">
-            <span class="badge badge-info">{{ getRoundName(match.roundId) }}</span>
-            <div class="time">{{ match.date ? (match.date | date:'HH:mm') : '--:--' }}</div>
-            <button class="btn-delete" (click)="removeMatch(match.id)" title="Remover jogo">
-              🗑️
-            </button>
-          </div>
+      <div *ngFor="let match of dayGroup.matches; trackBy: trackByMatch" class="match-card">
 
-          <div class="match-teams-vertical">
-            <div class="team-row">
-              <span class="team-name">{{ getTeamName(match.homeTeamId) }}</span>
-              <input
-                type="number"
-                class="team-score"
-                [class.winner]="(match.homeGoals ?? 0) > (match.awayGoals ?? 0) && match.homeGoals != null"
-                [(ngModel)]="match.homeGoals"
-                (change)="updateResult(match)"
-                placeholder="-"
-                min="0"
-              />
+        <div class="match-top">
+          <span class="badge badge-info">{{ getRoundName(match.roundId) }}</span>
+          <span class="match-time">{{ match.date ? (match.date | date:'HH:mm') : '--:--' }}</span>
+          <span class="match-badge"
+                [class.badge-done]="match.homeGoals != null && match.awayGoals != null"
+                [class.badge-pending]="match.homeGoals == null || match.awayGoals == null">
+            <ion-icon [name]="match.homeGoals != null && match.awayGoals != null ? 'checkmark' : 'time-outline'"></ion-icon>
+          </span>
+          <button class="btn-delete" (click)="removeMatch(match.id)" title="Remover jogo">
+            <ion-icon name="trash-outline"></ion-icon>
+          </button>
+        </div>
+
+        <div class="match-body">
+          <div class="team home">
+            <div class="team-avatar" [style.background]="getTeam(match.homeTeamId)?.logo ? 'transparent' : getTeamColor(match.homeTeamId)">
+              <img *ngIf="getTeam(match.homeTeamId)?.logo" [src]="getTeam(match.homeTeamId)!.logo" alt="" />
+              <span *ngIf="!getTeam(match.homeTeamId)?.logo">{{ getTeamInitial(match.homeTeamId) }}</span>
             </div>
-
-            <div class="team-row">
-              <span class="team-name">{{ getTeamName(match.awayTeamId) }}</span>
-              <input
-                type="number"
-                class="team-score"
-                [class.winner]="(match.awayGoals ?? 0) > (match.homeGoals ?? 0) && match.awayGoals != null"
-                [(ngModel)]="match.awayGoals"
-                (change)="updateResult(match)"
-                placeholder="-"
-                min="0"
-              />
+            <span class="team-name">{{ getTeamName(match.homeTeamId) }}</span>
+          </div>
+          <div class="score-box">
+            <input
+              type="number"
+              class="score-input"
+              [class.winner]="(match.homeGoals ?? 0) > (match.awayGoals ?? 0) && match.homeGoals != null"
+              [(ngModel)]="match.homeGoals"
+              (change)="updateResult(match)"
+              placeholder="–"
+              min="0"
+            />
+            <div class="score-sep">:</div>
+            <input
+              type="number"
+              class="score-input"
+              [class.winner]="(match.awayGoals ?? 0) > (match.homeGoals ?? 0) && match.awayGoals != null"
+              [(ngModel)]="match.awayGoals"
+              (change)="updateResult(match)"
+              placeholder="–"
+              min="0"
+            />
+          </div>
+          <div class="team away">
+            <span class="team-name">{{ getTeamName(match.awayTeamId) }}</span>
+            <div class="team-avatar" [style.background]="getTeam(match.awayTeamId)?.logo ? 'transparent' : getTeamColor(match.awayTeamId)">
+              <img *ngIf="getTeam(match.awayTeamId)?.logo" [src]="getTeam(match.awayTeamId)!.logo" alt="" />
+              <span *ngIf="!getTeam(match.awayTeamId)?.logo">{{ getTeamInitial(match.awayTeamId) }}</span>
             </div>
           </div>
-
-
+        </div>
 
       </div>
     </div>
