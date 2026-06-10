@@ -113,14 +113,15 @@ export class RoundsComponent implements OnInit {
   async onDrop(event: CdkDragDrop<RoundWithMatches[]>): Promise<void> {
     if (event.previousIndex === event.currentIndex) return;
 
-    // Fixed slots in DESC order — round numbers never change
+    // Fixed visual slots = rounds sorted DESC by order (what the user sees)
     const slots = [...this.rounds].sort((a, b) => b.order - a.order);
 
-    // Compute the new assignment after the drag
-    const newAssignment = [...this.roundsWithMatches];
+    // Start from the DISPLAYED order (filteredRounds), not the raw unsorted array
+    const newAssignment = [...this.filteredRounds];
     moveItemInArray(newAssignment, event.previousIndex, event.currentIndex);
 
-    // Fetch all affected matches before any writes (avoids circular overwrite)
+    // Fetch matches for all positions where content needs to move
+    // (read everything first to avoid circular overwrites)
     const matchFetches = await Promise.all(
       slots.map((slot, i) =>
         newAssignment[i].id !== slot.id
@@ -129,7 +130,7 @@ export class RoundsComponent implements OnInit {
       )
     );
 
-    // Reassign matches to their new rounds in parallel
+    // Reassign matches to their new round slots
     await Promise.all(
       slots.flatMap((slot, i) =>
         matchFetches[i].map(m => this.matchService.update({ ...m, roundId: slot.id }))
