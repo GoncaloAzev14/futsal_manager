@@ -49,11 +49,30 @@ $danger: #e05c5c;
     &:focus { outline:none; border-color:$accent; box-shadow:0 0 0 3px $accent-dim; }
     option { background:#172135; color:$text; }
   }
+  input[type="datetime-local"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 40px;
+    padding: 0 12px;
+    line-height: 40px;
+    font-size: 0.82rem;
+  }
 }
+.vs-sep {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: $subtext;
+  align-self: flex-end;
+  padding-bottom: 11px;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
 .compact-btn {
   background:rgba(255,255,255,0.08); color:$subtext; border:none; border-radius:10px;
-  padding:10px 22px; font-size:0.88rem; font-weight:800; text-transform:none; cursor:not-allowed;
-  white-space:nowrap; align-self:flex-end; transition:background 160ms, color 160ms;
+  padding:11px; font-size:0.88rem; font-weight:800; text-transform:none; cursor:not-allowed;
+  width:100%; transition:background 160ms, color 160ms;
   &.btn-valid { background:$accent; color:#041a0f; cursor:pointer; }
 }
 .card-title { display:none; }

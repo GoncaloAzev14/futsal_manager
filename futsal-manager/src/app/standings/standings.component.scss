@@ -1,54 +1,227 @@
+$surface:       #111827;
+$header-bg:     #172135;
+$accent:        #00c47a;
+$accent-dim:    rgba(0, 196, 122, 0.13);
+$accent-border: rgba(0, 196, 122, 0.28);
+$text:          #dde8f8;
+$subtext:       #556680;
+$border:        rgba(255, 255, 255, 0.07);
+$gold:          #f5c518;
+$silver:        #b0b8c8;
+$bronze:        #c87c3e;
+$win-color:     #00c47a;
+$draw-color:    #d99a3a;
+$loss-color:    #e05c5c;
+
 :host {
   display: block;
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: #0b0f1a;
+    z-index: -1;
+  }
 }
-:host::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: #0b0f1a;
-  z-index: -1;
-}
+
 .container {
   margin-top: -70px;
   padding: 16px 12px 110px;
-  max-width: 100%;
 }
+
+/* ── Card wrapper ────────────────────────────── */
+
+.table-card {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Table base ──────────────────────────────── */
+
 table {
   width: 100%;
-  background: #111827;
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 14px;
-  overflow: hidden;
   border-collapse: collapse;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.35);
+  min-width: 320px;
 }
-thead { background: #172135; }
+
+thead tr {
+  background: $header-bg;
+  border-bottom: 1px solid $border;
+}
+
 th {
-  padding: 11px 8px;
-  text-align: left;
+  padding: 11px 6px;
+  font-size: 0.62rem;
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 0.68rem;
   letter-spacing: 0.6px;
-  color: #8b9ab5;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  color: $subtext;
+  white-space: nowrap;
+  text-align: center;
 }
-th:first-child { text-align: center; width: 44px; }
+
 td {
-  padding: 11px 8px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  font-size: 0.85rem;
-  color: #dde8f8;
+  padding: 0 6px;
+  height: 52px;
+  border-bottom: 1px solid $border;
+  font-size: 0.82rem;
+  color: $text;
+  text-align: center;
+  vertical-align: middle;
 }
-td:first-child { text-align: center; font-weight: 700; color: #8b9ab5; font-size: 1rem; }
-td:last-child { font-weight: 800; }
-tbody tr:hover { background: rgba(255,255,255,0.04); }
+
 tbody tr:last-child td { border-bottom: none; }
-tbody tr:nth-child(1) td:first-child { color: #ffd700; }
-tbody tr:nth-child(2) td:first-child { color: #c0c0c0; }
-tbody tr:nth-child(3) td:first-child { color: #cd7f32; }
-@media (max-width: 768px) {
-  th, td { padding: 10px 5px; }
-  td { font-size: 0.78rem; }
-  td:nth-child(n+3):nth-child(-n+7) { font-size: 0.7rem; color: #8b9ab5; }
+tbody tr:hover { background: rgba(255,255,255,0.03); }
+
+/* ── Zone row highlights ─────────────────────── */
+
+.row-champion td:first-child {
+  box-shadow: inset 3px 0 0 $gold;
+}
+.row-champion {
+  background: rgba(245, 197, 24, 0.04);
+}
+
+.row-podium td:first-child {
+  box-shadow: inset 3px 0 0 $silver;
+}
+
+/* ── Column sizing ───────────────────────────── */
+
+.col-pos  { width: 38px; text-align: center; }
+.col-team { text-align: left; padding-left: 10px; }
+.col-num  { width: 32px; }
+.col-goals { width: 56px; font-size: 0.76rem; }
+.col-pts  { width: 40px; }
+
+/* ── Position badge ──────────────────────────── */
+
+.pos-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: $subtext;
+  background: transparent;
+}
+
+.pos-gold   { color: $gold;   background: rgba(245,197,24,0.12);  }
+.pos-silver { color: $silver; background: rgba(176,184,200,0.12); }
+.pos-bronze { color: $bronze; background: rgba(200,124,62,0.12);  }
+
+/* ── Team cell ───────────────────────────────── */
+
+.team-cell {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.9);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.3);
+  overflow: hidden;
+
+  img { width: 100%; height: 100%; object-fit: cover; }
+}
+
+.team-name {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: $text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 130px;
+}
+
+/* ── Stat columns ────────────────────────────── */
+
+.col-w { color: $win-color;  }
+.col-d { color: $draw-color; }
+.col-l { color: $loss-color; }
+
+.goals-sep { opacity: 0.4; margin: 0 1px; }
+
+/* Goal difference */
+.dg-pos { color: $win-color;  font-weight: 700; }
+.dg-neg { color: $loss-color; font-weight: 700; }
+
+/* ── Points badge ────────────────────────────── */
+
+.pts-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: $text;
+  background: transparent;
+}
+
+.pts-leader {
+  background: $accent-dim;
+  border: 1px solid $accent-border;
+  color: $accent;
+}
+
+/* ── Zone legend ─────────────────────────────── */
+
+.zone-legend {
+  display: flex;
+  gap: 16px;
+  padding: 10px 14px;
+  border-top: 1px solid $border;
+  background: rgba(255,255,255,0.015);
+}
+
+.zone-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  color: $subtext;
+  font-weight: 600;
+}
+
+.zone-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.dot-champion { background: $gold; }
+.dot-podium   { background: $silver; }
+
+/* ── Hide on small screens ───────────────────── */
+
+@media (max-width: 400px) {
+  .col-hide { display: none; }
+  .team-name { max-width: 100px; }
 }

@@ -4,15 +4,8 @@
     <summary class="card-title">Adicionar Jogo</summary>
 
     <div class="compact-form">
+      <!-- Teams row -->
       <div class="compact-row">
-        <div class="compact-field">
-          <label for="round">Jornada</label>
-          <select id="round" [(ngModel)]="selectedRoundId">
-            <option [ngValue]="undefined">Selecionar</option>
-            <option *ngFor="let r of rounds" [value]="r.id">{{ r.name }}</option>
-          </select>
-        </div>
-
         <div class="compact-field">
           <label for="home-team">Casa</label>
           <select id="home-team" [(ngModel)]="homeTeamId">
@@ -20,6 +13,8 @@
             <option *ngFor="let t of teams" [value]="t.id">{{ t.name }}</option>
           </select>
         </div>
+
+        <div class="vs-sep">vs</div>
 
         <div class="compact-field">
           <label for="away-team">Fora</label>
@@ -30,19 +25,29 @@
         </div>
       </div>
 
+      <!-- Round + Location row -->
       <div class="compact-row">
         <div class="compact-field">
-          <label for="date">Data e Hora</label>
-          <input id="date" type="datetime-local" [(ngModel)]="date" />
+          <label for="round">Jornada</label>
+          <select id="round" [(ngModel)]="selectedRoundId">
+            <option [ngValue]="undefined">Selecionar</option>
+            <option *ngFor="let r of rounds" [value]="r.id">{{ r.name }}</option>
+          </select>
         </div>
 
         <div class="compact-field">
           <label for="location">Local</label>
           <input id="location" type="text" placeholder="Ex: Pavilhão" [(ngModel)]="location" />
         </div>
-
-        <button class="compact-btn" [class.btn-valid]="isMatchFormValid" (click)="createMatch()">Criar</button>
       </div>
+
+      <!-- Date row — full width so iOS doesn't wrap the value -->
+      <div class="compact-field">
+        <label for="date">Data e Hora</label>
+        <input id="date" type="datetime-local" [(ngModel)]="date" />
+      </div>
+
+      <button class="compact-btn" [class.btn-valid]="isMatchFormValid" (click)="createMatch()">Criar Jogo</button>
     </div>
   </details>
 

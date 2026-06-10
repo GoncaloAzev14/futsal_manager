@@ -3,31 +3,57 @@
     <a routerLink="/settings" class="settings-button">
       <span class="settings-icon">⚙️</span>
     </a>
-    <div class="header-title">
-      <h1>Época {{ seasonText }}</h1>
-    </div>
+    <div class="season-badge">Época {{ seasonText }}</div>
   </div>
 </div>
 
-<div class="competitions-container">
-  <div class="competitions-header">
-    <h1>Selecionar Competição</h1>
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-icon">⚽</div>
+    <h1 class="hero-title">Futsal Manager</h1>
+    <p class="hero-sub">Selecione uma competição para continuar</p>
   </div>
 
-  <div class="competitions-grid">
+  <div class="section-label">Competições</div>
+
+  <div class="competitions-list" *ngIf="cards.length > 0; else empty">
     <a
-      *ngFor="let comp of competitions"
+      *ngFor="let comp of cards"
       [routerLink]="['/competition', comp.id]"
       class="competition-card"
     >
-      <div class="competition-icon">{{ comp.icon }}</div>
-      <div class="details">
-        <h2>{{ comp.name }}</h2>
-        <p>{{ comp.shortName }}</p>
+      <div class="card-accent" [class.cup]="comp.type === 'cup'"></div>
+
+      <div class="card-icon">{{ comp.icon }}</div>
+
+      <div class="card-body">
+        <div class="card-name">{{ comp.name }}</div>
+        <div class="card-meta">
+          <span class="meta-chip">{{ comp.type === 'league' ? 'Liga' : 'Taça' }}</span>
+          <span class="meta-stat" *ngIf="comp.teamCount > 0">
+            {{ comp.teamCount }} {{ comp.teamCount === 1 ? 'equipa' : 'equipas' }}
+          </span>
+          <span class="meta-stat" *ngIf="comp.roundCount > 0">
+            {{ comp.roundCount }} {{ comp.roundCount === 1 ? 'jornada' : 'jornadas' }}
+          </span>
+        </div>
       </div>
-      <span class="competition-badge">{{ comp.type === 'league' ? 'Liga' : 'Taça' }}</span>
+
+      <svg class="card-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
     </a>
   </div>
+
+  <ng-template #empty>
+    <div class="empty-state">
+      <div class="empty-icon">🏟️</div>
+      <div class="empty-text">Nenhuma competição encontrada</div>
+      <p>Vá às definições para criar competições</p>
+    </div>
+  </ng-template>
+
 </div>
 
 <div class="home-footer">

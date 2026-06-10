@@ -1,26 +1,74 @@
-<div class="container">
-  <table>
-    <thead>
-      <tr>
-        <th>#</th><th>Equipa</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GM : GS</th><th>P</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let r of rows; let i = index">
-        <td>
-          <span *ngIf="i === 0">🥇</span>
-          <span *ngIf="i === 1">🥈</span>
-          <span *ngIf="i === 2">🥉</span>
-          <span *ngIf="i > 2">{{ i + 1 }}º</span>
-        </td>
-        <td>{{ r.teamName }}</td>
-        <td>{{ r.played }}</td>
-        <td>{{ r.wins }}</td>
-        <td>{{ r.draws }}</td>
-        <td>{{ r.losses }}</td>
-        <td>{{ r.goalsFor }} : {{ r.goalsAgainst }}</td>
-        <td><b>{{ r.points }}</b></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container fade-in">
+  <div class="table-card">
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th class="col-pos">#</th>
+            <th class="col-team">Equipa</th>
+            <th class="col-num" title="Jogos">J</th>
+            <th class="col-num col-w" title="Vitórias">V</th>
+            <th class="col-num col-d" title="Empates">E</th>
+            <th class="col-num col-l" title="Derrotas">D</th>
+            <th class="col-goals col-hide" title="Golos Marcados : Golos Sofridos">GM:GS</th>
+            <th class="col-num col-dg" title="Diferença de golos">DG</th>
+            <th class="col-pts" title="Pontos">P</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of rows; let i = index"
+              [class.row-champion]="i === 0"
+              [class.row-podium]="i > 0 && i < 3">
+
+            <td class="col-pos">
+              <span class="pos-badge"
+                    [class.pos-gold]="i === 0"
+                    [class.pos-silver]="i === 1"
+                    [class.pos-bronze]="i === 2">
+                {{ i + 1 }}
+              </span>
+            </td>
+
+            <td class="col-team">
+              <div class="team-cell">
+                <div class="avatar"
+                     [style.background]="getTeam(r.teamId)?.logo ? 'transparent' : getTeamColor(r.teamId)">
+                  <img *ngIf="getTeam(r.teamId)?.logo" [src]="getTeam(r.teamId)!.logo" alt="" />
+                  <span *ngIf="!getTeam(r.teamId)?.logo">{{ r.teamName.charAt(0) }}</span>
+                </div>
+                <span class="team-name">{{ r.teamName }}</span>
+              </div>
+            </td>
+
+            <td class="col-num">{{ r.played }}</td>
+            <td class="col-num col-w">{{ r.wins }}</td>
+            <td class="col-num col-d">{{ r.draws }}</td>
+            <td class="col-num col-l">{{ r.losses }}</td>
+
+            <td class="col-goals col-hide">
+              {{ r.goalsFor }}<span class="goals-sep">:</span>{{ r.goalsAgainst }}
+            </td>
+
+            <td class="col-num col-dg"
+                [class.dg-pos]="r.goalDifference > 0"
+                [class.dg-neg]="r.goalDifference < 0">
+              {{ diffLabel(r.goalDifference) }}
+            </td>
+
+            <td class="col-pts">
+              <span class="pts-badge" [class.pts-leader]="i === 0">{{ r.points }}</span>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="zone-legend" *ngIf="rows.length > 0">
+      <span class="zone-item"><span class="zone-dot dot-champion"></span>Campeão</span>
+      <span class="zone-item" *ngIf="rows.length > 2"><span class="zone-dot dot-podium"></span>Pódio</span>
+    </div>
+
+  </div>
 </div>
