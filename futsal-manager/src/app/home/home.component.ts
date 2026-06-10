@@ -6,6 +6,7 @@ import { CompetitionService } from './../competiton.service';
 import { TeamService } from '../team.service';
 import { RoundService } from '../round.service';
 import { Competition } from '../model';
+import { LucideAngularModule, Settings } from 'lucide-angular';
 
 interface CompetitionCard extends Competition {
   teamCount: number;
@@ -15,11 +16,12 @@ interface CompetitionCard extends Competition {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, LucideAngularModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  readonly Settings = Settings;
   cards: CompetitionCard[] = [];
   seasonText = '';
 

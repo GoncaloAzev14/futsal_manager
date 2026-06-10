@@ -1,7 +1,7 @@
 <div class="home-header">
   <div class="header-content">
     <a routerLink="/settings" class="settings-button">
-      <span class="settings-icon">⚙️</span>
+      <lucide-icon [img]="Settings" [size]="22"></lucide-icon>
     </a>
     <div class="season-badge">Época {{ seasonText }}</div>
   </div>
@@ -15,7 +15,11 @@
     <p class="hero-sub">Selecione uma competição para continuar</p>
   </div>
 
-  <div class="section-label">Competições</div>
+  <div class="section-divider">
+    <span class="divider-line"></span>
+    <span class="divider-label">Competições</span>
+    <span class="divider-line"></span>
+  </div>
 
   <div class="competitions-list" *ngIf="cards.length > 0; else empty">
     <a

@@ -1,13 +1,11 @@
 $accent:        #00c47a;
-$accent-dim:    rgba(0, 196, 122, 0.12);
-$accent-border: rgba(0, 196, 122, 0.25);
+$accent-dim:    rgba(0, 196, 122, 0.13);
+$accent-border: rgba(0, 196, 122, 0.28);
 $surface:       #111827;
 $header-bg:     #0d1120;
 $text:          #dde8f8;
 $subtext:       #556680;
 $border:        rgba(255, 255, 255, 0.07);
-$cup-color:     #d99a3a;
-$cup-dim:       rgba(217, 154, 58, 0.18);
 
 :host {
   display: block;
@@ -64,13 +62,17 @@ $cup-dim:       rgba(217, 154, 58, 0.18);
   letter-spacing: 0.2px;
 }
 
-/* ── Page container ──────────────────────────── */
+/* ── Page — full-height flex, content vertically centered ── */
 
 .page {
   max-width: 600px;
-  margin: 0 auto;
-  padding: 0 16px 80px;
-  min-height: 100vh;
+  margin: -60px auto 0;
+  padding: 0 16px 24px;
+  min-height: calc(100dvh - 98px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
 }
 
 /* ── Hero ────────────────────────────────────── */
@@ -80,42 +82,57 @@ $cup-dim:       rgba(217, 154, 58, 0.18);
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 8px 0 24px;
+  padding: 0;
 }
 
 .hero-icon {
-  font-size: 3.2rem;
-  margin-bottom: 14px;
-  filter: drop-shadow(0 4px 16px rgba(0, 196, 122, 0.25));
+  font-size: 4.8rem;
+  line-height: 1;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 32px rgba(0, 196, 122, 0.4))
+          drop-shadow(0 6px 16px rgba(0, 0, 0, 0.6));
 }
 
 .hero-title {
-  font-size: 1.6rem;
+  font-size: 1.85rem;
   font-weight: 800;
   color: $text;
   margin: 0 0 8px;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.5px;
 }
 
 .hero-sub {
-  font-size: 0.83rem;
+  font-size: 0.85rem;
   color: $subtext;
   margin: 0;
+  line-height: 1.5;
 }
 
-/* ── Section label ───────────────────────────── */
+/* ── Divider ─────────────────────────────────── */
 
-.section-label {
-  font-size: 0.68rem;
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: -8px 0;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: $border;
+}
+
+.divider-label {
+  font-size: 0.62rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
   color: $subtext;
-  margin-bottom: 10px;
-  padding-left: 2px;
+  white-space: nowrap;
 }
 
-/* ── Competition list ────────────────────────── */
+/* ── Competitions ─────────────────────────────── */
 
 .competitions-list {
   display: flex;
@@ -127,10 +144,9 @@ $cup-dim:       rgba(217, 154, 58, 0.18);
   background: $surface;
   border: 1px solid $border;
   border-radius: 16px;
-  padding: 16px 14px 16px 0;
+  padding: 20px 16px 20px 0;
   display: flex;
   align-items: center;
-  gap: 0;
   text-decoration: none;
   color: $text;
   position: relative;
@@ -141,11 +157,9 @@ $cup-dim:       rgba(217, 154, 58, 0.18);
     background: rgba(255,255,255,0.055);
     border-color: $accent-border;
   }
-
   &:active { transform: scale(0.985); }
 }
 
-/* Colored left accent bar */
 .card-accent {
   width: 4px;
   align-self: stretch;
@@ -154,11 +168,11 @@ $cup-dim:       rgba(217, 154, 58, 0.18);
   flex-shrink: 0;
   margin-right: 14px;
 
-  &.cup { background: $cup-color; }
+  &.cup { background: #d99a3a; }
 }
 
 .card-icon {
-  font-size: 2rem;
+  font-size: 2.2rem;
   flex-shrink: 0;
   margin-right: 14px;
   line-height: 1;
@@ -173,7 +187,7 @@ $cup-dim:       rgba(217, 154, 58, 0.18);
 }
 
 .card-name {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-weight: 700;
   color: $text;
   white-space: nowrap;
@@ -196,19 +210,13 @@ $cup-dim:       rgba(217, 154, 58, 0.18);
   border: 1px solid $accent-border;
   border-radius: 20px;
   padding: 2px 8px;
-  white-space: nowrap;
 }
 
 .meta-stat {
   font-size: 0.72rem;
   color: $subtext;
   font-weight: 500;
-
-  &::before {
-    content: '·';
-    margin-right: 6px;
-    opacity: 0.5;
-  }
+  &::before { content: '·'; margin-right: 6px; opacity: 0.5; }
 }
 
 .card-chevron {
@@ -216,10 +224,9 @@ $cup-dim:       rgba(217, 154, 58, 0.18);
   flex-shrink: 0;
   margin-left: 8px;
   margin-right: 4px;
-  opacity: 0.5;
+  opacity: 0.45;
   transition: opacity 150ms, transform 150ms;
 }
-
 .competition-card:hover .card-chevron {
   opacity: 1;
   color: $accent;
@@ -230,9 +237,8 @@ $cup-dim:       rgba(217, 154, 58, 0.18);
 
 .empty-state {
   text-align: center;
-  padding: 48px 24px;
+  padding: 32px 24px;
   color: $subtext;
-
   .empty-icon { font-size: 2.8rem; margin-bottom: 14px; opacity: 0.4; }
   .empty-text { font-size: 1rem; font-weight: 700; color: $text; margin-bottom: 6px; }
   p { font-size: 0.83rem; margin: 0; }

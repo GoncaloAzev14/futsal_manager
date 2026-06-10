@@ -8,7 +8,8 @@ import {
   ChartColumn,
   CircleDot,
   CalendarDays,
-  Users
+  Users,
+  ArrowLeft
 } from 'lucide-angular';
 
 @Component({
@@ -22,6 +23,7 @@ export class LeagueComponent implements OnInit {
   readonly CircleDot = CircleDot;
   readonly CalendarDays = CalendarDays;
   readonly Users = Users;
+  readonly ArrowLeft = ArrowLeft;
   competitionId: string = '';
   competition: Competition | undefined;
 

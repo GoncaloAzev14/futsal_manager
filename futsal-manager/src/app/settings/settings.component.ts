@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LucideAngularModule, ArrowLeft } from 'lucide-angular';
 import { CompetitionService } from '../competiton.service';
 import { MigrationService } from '../migration.service';
 import { AppDB } from '../db.service';
@@ -11,11 +12,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, LucideAngularModule],
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent implements OnInit {
+  readonly ArrowLeft = ArrowLeft;
   competitions: Competition[] = [];
 
   newCompName = '';
