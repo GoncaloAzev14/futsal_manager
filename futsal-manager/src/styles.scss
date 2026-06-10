@@ -7,6 +7,13 @@ html, body {
 
 button, a, input, textarea {
   touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 :root {

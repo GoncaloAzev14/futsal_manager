@@ -17,16 +17,29 @@ $danger-dim: rgba(224,92,92,0.10);
   border-bottom:1px solid rgba(255,255,255,0.07); z-index:1000; height:50px;
 }
 .nav-container {
-  display:flex; align-items:center; justify-content:space-between; padding:0 16px; height:100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 100%;
 }
-.nav-title { font-size:1rem; font-weight:700; color:white; h2 { margin:0; font-size:1rem; font-weight:700; } }
+.nav-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  h2 { margin: 0; font-size: 1rem; font-weight: 700; color: white; white-space: nowrap; }
+}
 .back-button {
-  background:transparent; border:none; color:white; font-size:0.95rem; font-weight:600;
-  cursor:pointer; padding:8px 12px; border-radius:8px; display:flex; align-items:center;
-  gap:8px; text-transform:none; letter-spacing:0;
-  &:hover { background:rgba(255,255,255,0.08); }
+  background: none; border: none; outline: none; color: white;
+  font-size: 0.95rem; font-weight: 600; cursor: pointer;
+  padding: 8px 12px; border-radius: 8px; display: flex; align-items: center;
+  gap: 8px; text-transform: none; letter-spacing: 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 200ms;
+  &:hover, &:focus { background: none; outline: none; }
+  &:active { opacity: 0.7; }
 }
-.back-icon { font-size:1.3rem; }
 
 .container { margin-top:-90px; padding:70px 16px 30px; max-width:600px; margin-left:auto; margin-right:auto; }
 
